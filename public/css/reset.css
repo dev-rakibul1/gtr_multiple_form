@@ -1,0 +1,136 @@
+/*! HTML5 Boilerplate version 1.0.0 | MIT License | It's free and comfort usable */
+
+/* reset.css 1.0.0 | RAKIBUL ISLAM
+/*
+ *It's default CSS use in website and cross-browser styling. This code collects in
+  HTML5 and CSS3 this class flowing and create a website in a simple time!
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+/**
+CALLING GOOGLE FONTS
+font-family: 'Lexend', sans-serif;
+*/
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/*
+  * Remove the margin and padding in all browsers.
+  */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* color */
+:root {
+  --primary-color: linear-gradient(24deg, #4502fa, #ea01ec);
+  --para-color: #7b7583;
+  --application-bg: linear-gradient(
+    45deg,
+    rgba(48, 255, 0, 0.1741071428571429) 8%,
+    rgba(234, 1, 236, 0.0760679271708683) 100%
+  );
+}
+
+/*
+ * div default margin and padding none 
+ */
+
+html,
+body {
+  box-sizing: border-box;
+  font-smooth: inherit;
+  scroll-behavior: smooth;
+  transition: all 0.5s;
+  width: 100%;
+  height: auto;
+  scroll-margin-top: 0;
+  font-family: "Lexend", sans-serif;
+  background: rgb(231, 249, 255);
+  background: -moz-linear-gradient(
+    80deg,
+    rgba(231, 249, 255, 1) 8%,
+    rgba(255, 248, 243, 1) 55%
+  );
+  background: -webkit-linear-gradient(
+    80deg,
+    rgba(231, 249, 255, 1) 8%,
+    rgba(255, 248, 243, 1) 55%
+  );
+  background: linear-gradient(
+    80deg,
+    rgba(231, 249, 255, 1) 8%,
+    rgba(255, 248, 243, 1) 55%
+  );
+}
+/* -------------------------------------------------------------------------- */
+/* Container */
+/* -------------------------------------------------------------------------- */
+.gtr-box-container {
+  width: 95%;
+  height: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.gtr-box-container {
+  width: 1170px;
+  height: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+}
+select {
+  background: #fff;
+}
+
+input::placeholder {
+  color: #a1a1a1; /* Desired placeholder color */
+}
+textarea:focus {
+  outline: none; /* Optional: Remove the outline when the textarea is focused */
+}
+textarea {
+  border: 1px solid #ddd;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+  list-style: none;
+}
+
+p {
+  color: var(--para-color);
+  font-family: "Lexend", sans-serif;
+  font-weight: 300;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
