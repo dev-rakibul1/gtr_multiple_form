@@ -4,19 +4,24 @@ const emailRex =
 const phoneRex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
 const StepTwo = ({ formInfoCarrier }) => {
-  const {
-    next,
-    prev,
-    formData,
-    handleInputFields,
-    errorMeg,
-    handleCheckboxChange1,
-    handleCheckboxChange2,
-    handleCheckboxChange3,
-  } = formInfoCarrier;
+  const { next, prev, formData, handleInputFields, errorMeg } = formInfoCarrier;
 
   console.log(formData);
   console.log(errorMeg);
+
+  let testData = [];
+  let i = 0;
+
+  do {
+    // if (i >= 10) {
+    //   break;
+    // }
+    testData.push(i);
+    i++;
+  } while (i < formData.shareholderCount);
+
+  console.log(testData);
+  console.log("handleInputFields_______", formData);
 
   return (
     <div className="pb-16 ">
@@ -47,7 +52,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.financeContactName &&
                     formData.financeContactName.length < 3) ||
-                  formData.financeContactName.length > 20
+                  formData.financeContactName.length > 70
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -75,7 +80,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.financeContactDesignation &&
                     formData.financeContactDesignation.length < 3) ||
-                  formData.financeContactDesignation.length > 20
+                  formData.financeContactDesignation.length > 70
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -130,7 +135,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 value={formData.financeContactPhone}
                 className={`outline-0 border  w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   formData.financeContactPhone &&
-                  !formData.financeContactPhone.match(phoneRex)
+                  formData.financeContactPhone === ""
                     ? "border-red-600"
                     : "border-slate-300"
                 }`}
@@ -173,7 +178,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.reservationContactName &&
                     formData.reservationContactName.length < 3) ||
-                  formData.reservationContactName.length > 20
+                  formData.reservationContactName.length > 70
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -201,7 +206,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.reservationContactDesignation &&
                     formData.reservationContactDesignation.length < 3) ||
-                  formData.reservationContactDesignation.length > 20
+                  formData.reservationContactDesignation.length > 70
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -256,7 +261,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 value={formData.reservationContactPhone}
                 className={`outline-0 border  w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   formData.reservationContactPhone &&
-                  !formData.reservationContactPhone.match(phoneRex)
+                  formData.reservationContactPhone === ""
                     ? "border-red-600"
                     : "border-slate-300"
                 }`}
@@ -298,7 +303,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.emergencyContactName &&
                     formData.emergencyContactName.length < 3) ||
-                  formData.emergencyContactName.length > 20
+                  formData.emergencyContactName.length > 70
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -326,7 +331,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.emergencyContactDesignation &&
                     formData.emergencyContactDesignation.length < 3) ||
-                  formData.emergencyContactDesignation.length > 20
+                  formData.emergencyContactDesignation.length > 70
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -381,7 +386,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 value={formData.emergencyContactPhone}
                 className={`outline-0 border  w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   formData.emergencyContactPhone &&
-                  !formData.emergencyContactPhone.match(phoneRex)
+                  formData.emergencyContactPhone === ""
                     ? "border-red-600"
                     : "border-slate-300"
                 }`}
@@ -414,7 +419,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="shareholder-count"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                How Many Shareholders{" "}
+                How Many Shareholders (Max 10){" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -437,31 +442,47 @@ const StepTwo = ({ formInfoCarrier }) => {
             </div>
 
             {/* 2 - Please Put Shareholders' Name and Ratio */}
+
             <div className="">
-              <label
-                htmlFor="shareholders-info"
-                className="py-1 text-base text-gray-500 inline-block normal-case"
-              >
-                HPlease Put Shareholders' Name and Ratio{" "}
-                <span className="text-xl font-bold text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="shareholdersInfo"
-                id="shareholders-info"
-                value={formData.shareholdersInfo}
-                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  formData.shareholdersInfo && formData.shareholdersInfo === ""
-                    ? "border-red-600 "
-                    : " border-slate-300 "
-                }`}
-                onChange={handleInputFields}
-              />
-              {errorMeg?.shareholdersInfo && (
-                <small className="text-red-600">
-                  {errorMeg?.shareholdersInfo}
-                </small>
-              )}
+              {testData.map((input, i) => (
+                <div className="flex gap-x-4" key={i + 1}>
+                  <div className="">
+                    <label
+                      htmlFor={`shareholders-info${i + 1}`}
+                      className="py-1 text-base text-gray-500 inline-block normal-case"
+                    >
+                      Shareholders' Name{" "}
+                      <span className="text-xl font-bold text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name={`shareholdersInfo${i + 1}`}
+                      id={`shareholders-info${i + 1}`}
+                      // value={``}
+                      className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 border-slate-300`}
+                      onChange={handleInputFields}
+                    />
+                  </div>
+
+                  <div className="">
+                    <label
+                      htmlFor={`shareholders-ratio${i + 1}`}
+                      className="py-1 text-base text-gray-500 inline-block normal-case"
+                    >
+                      Ratio Name{" "}
+                      <span className="text-xl font-bold text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name={`shareholdersRatio${i + 1}`}
+                      id={`shareholders-ratio${i + 1}`}
+                      // value={`${formData.shareholdersRatio}${i + 1}`}
+                      className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 border-slate-300`}
+                      onChange={handleInputFields}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -488,6 +509,7 @@ const StepTwo = ({ formInfoCarrier }) => {
               <input
                 type="file"
                 name="registrationDocs"
+                accept=".png, .pdf, .jpeg, .jpg"
                 id="registration-docs"
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   formData.registrationDocs && formData.registrationDocs === ""
@@ -543,6 +565,7 @@ const StepTwo = ({ formInfoCarrier }) => {
               </label>
               <input
                 type="file"
+                accept=".png, .pdf, .jpeg, .jpg"
                 name="travelAgentLicense"
                 id="travel-agent-license"
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
@@ -560,69 +583,6 @@ const StepTwo = ({ formInfoCarrier }) => {
               )}
             </div>
           </div>
-
-          <div className="mt-7">
-            {/* 4 - Click Box for Acceptance GPDR Cookie Consent Management */}
-            <div className="mt-3">
-              <input
-                type="checkbox"
-                name="gdprConsent"
-                id="gdpr-consent"
-                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
-                onClick={handleCheckboxChange1}
-                value={formData.gdprConsent}
-                checked={formData.gdprConsent}
-              />
-
-              <label
-                htmlFor="gdpr-consent"
-                className=" ml-4 text-base text-gray-500 inline-block normal-case"
-              >
-                Click Box for Acceptance GPDR Cookie Consent Management
-              </label>
-            </div>
-
-            {/* 5 - Click box for accept privacy policy */}
-            <div className="mt-3">
-              <input
-                type="checkbox"
-                name="privacyPolicyConsent"
-                id="privacy-policy-consent"
-                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
-                onClick={handleCheckboxChange2}
-                value={formData.privacyPolicyConsent}
-                checked={formData.privacyPolicyConsent}
-              />
-
-              <label
-                htmlFor="privacy-policy-consent"
-                className=" ml-4 text-base text-gray-500 inline-block normal-case"
-              >
-                Click box for accept privacy policy
-              </label>
-            </div>
-
-            {/* 6 - Click box for terms to use policy for Credit Card use to avoid fraud dispute */}
-            <div className="mt-3">
-              <input
-                type="checkbox"
-                name="termsPolicyConsent"
-                id="terms-policy-consent"
-                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
-                onClick={handleCheckboxChange3}
-                value={formData.termsPolicyConsent}
-                checked={formData.termsPolicyConsent}
-              />
-
-              <label
-                htmlFor="terms-policy-consent"
-                className="ml-4 text-base text-gray-500 inline-block normal-case"
-              >
-                Click box for terms to use policy for Credit Card use to avoid
-                fraud dispute
-              </label>
-            </div>
-          </div>
         </div>
 
         {/* button */}
@@ -635,16 +595,44 @@ const StepTwo = ({ formInfoCarrier }) => {
             <span>Prev</span>
           </button>
           <button
-            disabled={
-              !formData.gdprConsent ||
-              !formData.privacyPolicyConsent ||
-              !formData.termsPolicyConsent
-            }
+            // disabled={
+            //   !formData.financeContactName ||
+            //   !formData.financeContactDesignation ||
+            //   !formData.financeContactEmail ||
+            //   !formData.financeContactPhone ||
+            //   !formData.reservationContactName ||
+            //   !formData.reservationContactDesignation ||
+            //   !formData.reservationContactEmail ||
+            //   !formData.reservationContactPhone ||
+            //   !formData.emergencyContactName ||
+            //   !formData.emergencyContactDesignation ||
+            //   !formData.emergencyContactEmail ||
+            //   !formData.emergencyContactPhone ||
+            //   !formData.shareholderCount ||
+            //   !formData.shareholdersInfo ||
+            //   !formData.registrationDocs ||
+            //   !formData.taxRegistrationNo ||
+            //   !formData.travelAgentLicense
+            // }
             type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
-              !formData.gdprConsent ||
-              !formData.privacyPolicyConsent ||
-              !formData.termsPolicyConsent
+              !formData.financeContactName ||
+              !formData.financeContactDesignation ||
+              !formData.financeContactEmail ||
+              !formData.financeContactPhone ||
+              !formData.reservationContactName ||
+              !formData.reservationContactDesignation ||
+              !formData.reservationContactEmail ||
+              !formData.reservationContactPhone ||
+              !formData.emergencyContactName ||
+              !formData.emergencyContactDesignation ||
+              !formData.emergencyContactEmail ||
+              !formData.emergencyContactPhone ||
+              !formData.shareholderCount ||
+              !formData.shareholdersInfo ||
+              !formData.registrationDocs ||
+              !formData.taxRegistrationNo ||
+              !formData.travelAgentLicense
                 ? "bg-gray-400 cursor-not-allowed text-gray-600 opacity-[.7]"
                 : ""
             }`}

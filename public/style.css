@@ -1,3 +1,4 @@
+.text-gradient,
 .gtr-form-step-title {
   background-clip: text;
   -webkit-background-clip: text;
@@ -61,4 +62,8 @@
 input.input-error {
   border: blue;
   border: 1px solid rgb(0, 0, 0);
+}
+
+.gradient-bg {
+  background: linear-gradient(24deg, #4502fa, #ea01ec) !important;
 }

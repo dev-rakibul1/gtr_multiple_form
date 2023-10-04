@@ -1,7 +1,20 @@
 import React from "react";
 
 const StepThree = ({ formInfoCarrier }) => {
-  const { next, prev, formData, handleInputFields, errorMeg } = formInfoCarrier;
+  const {
+    next,
+    prev,
+    formData,
+    handleInputFields,
+    errorMeg,
+    handleCheckboxChange1,
+    handleCheckboxChange2,
+    handleCheckboxChange3,
+    isHotelChecked,
+    handleHotelRadioChange,
+    isFlightChecked,
+    handleFlightRadioChange,
+  } = formInfoCarrier;
 
   console.log(formData);
   console.log(errorMeg);
@@ -18,10 +31,44 @@ const StepThree = ({ formInfoCarrier }) => {
                 Understanding Content Requirements
               </h3>
             </div>
+
+            {/* hotel content yes/no */}
+            <div className="">
+              <p>If required, Please select "Yes" </p>
+              <div className="flex flex-col">
+                <label>
+                  <input
+                    type="radio"
+                    value="yes"
+                    checked={isHotelChecked === true}
+                    onChange={handleHotelRadioChange}
+                  />
+                  <span className="ml-2">Yes</span>
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="no"
+                    checked={isHotelChecked === false}
+                    onChange={handleHotelRadioChange}
+                  />
+                  <span className="ml-2">No</span>
+                </label>
+              </div>
+            </div>
           </div>
-          <div className="gtr-multiple-form-step-1 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-12 mt-3">
+          <div
+            className={`gtr-multiple-form-step-1 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-12 mt-3${
+              isHotelChecked === false &&
+              "text-gray-200 cursor-not-allowed opacity-[.6]"
+            }`}
+          >
             {/* 1 - Distribution Market (Country/Region) */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isHotelChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="distribution-market"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -50,7 +97,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 2 - Source Market (Mention your Top 10 Destination) */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isHotelChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="source-market"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -76,7 +127,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 3 - Daily Average Transaction */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isHotelChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="daily-average-transaction"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -106,7 +161,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 4 - Average Purchase Value for per transaction */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isHotelChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="average-purchase-value"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -136,7 +195,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 5 - Total appx Monthly Transaction */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isHotelChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="monthly-transaction"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -176,10 +239,44 @@ const StepThree = ({ formInfoCarrier }) => {
                 Understanding Content Requirements
               </h3>
             </div>
+
+            {/* Flight content yes/no */}
+            <div className="">
+              <p>If required, Please select "Yes" </p>
+              <div className="flex flex-col">
+                <label>
+                  <input
+                    type="radio"
+                    value="yes"
+                    checked={isFlightChecked === true}
+                    onChange={handleFlightRadioChange}
+                  />
+                  <span className="ml-2">Yes</span>
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="no"
+                    checked={isFlightChecked === false}
+                    onChange={handleFlightRadioChange}
+                  />
+                  <span className="ml-2">No</span>
+                </label>
+              </div>
+            </div>
           </div>
-          <div className="gtr-multiple-form-step-1 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-12 mt-3">
+          <div
+            className={`gtr-multiple-form-step-1 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-12 mt-3${
+              isFlightChecked === false &&
+              "text-gray-200 cursor-not-allowed opacity-[.6]"
+            }`}
+          >
             {/* 1 - Distribution Market (Country/Region) */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isFlightChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="distribution-market-2"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -208,7 +305,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 2 - Source Market (Mention your Top 10 Route) */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isFlightChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="source-market-2"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -236,7 +337,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 3 - Daily Average Transaction */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isFlightChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="daily-average-transaction-2"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -266,7 +371,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 4 - Average Purchase Value for per transaction */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isFlightChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="average-purchase-value-2"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -296,7 +405,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 5 - Total appx Monthly Transaction */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isFlightChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="monthly-transaction-2"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -326,7 +439,11 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 6 - Apprx Look to Book Ratio (100:1) */}
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                isFlightChecked === false && "text-gray-200 cursor-not-allowed"
+              }`}
+            >
               <label
                 htmlFor="look-to-book-ratio"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -353,6 +470,69 @@ const StepThree = ({ formInfoCarrier }) => {
               )}
             </div>
           </div>
+
+          <div className="mt-7">
+            {/* 4 - Click Box for Acceptance GPDR Cookie Consent Management */}
+            <div className="mt-3">
+              <input
+                type="checkbox"
+                name="gdprConsent"
+                id="gdpr-consent"
+                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+                onClick={handleCheckboxChange1}
+                value={formData.gdprConsent}
+                checked={formData.gdprConsent}
+              />
+
+              <label
+                htmlFor="gdpr-consent"
+                className=" ml-4 text-base text-gray-500 inline-block normal-case"
+              >
+                Click Box for Acceptance GPDR Cookie Consent Management
+              </label>
+            </div>
+
+            {/* 5 - Click box for accept privacy policy */}
+            <div className="mt-3">
+              <input
+                type="checkbox"
+                name="privacyPolicyConsent"
+                id="privacy-policy-consent"
+                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+                onClick={handleCheckboxChange2}
+                value={formData.privacyPolicyConsent}
+                checked={formData.privacyPolicyConsent}
+              />
+
+              <label
+                htmlFor="privacy-policy-consent"
+                className=" ml-4 text-base text-gray-500 inline-block normal-case"
+              >
+                Click box for accept privacy policy
+              </label>
+            </div>
+
+            {/* 6 - Click box for terms to use policy for Credit Card use to avoid fraud dispute */}
+            <div className="mt-3">
+              <input
+                type="checkbox"
+                name="termsPolicyConsent"
+                id="terms-policy-consent"
+                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+                onClick={handleCheckboxChange3}
+                value={formData.termsPolicyConsent}
+                checked={formData.termsPolicyConsent}
+              />
+
+              <label
+                htmlFor="terms-policy-consent"
+                className="ml-4 text-base text-gray-500 inline-block normal-case"
+              >
+                Click box for terms to use policy for Credit Card use to avoid
+                fraud dispute
+              </label>
+            </div>
+          </div>
         </div>
 
         {/* button */}
@@ -365,8 +545,19 @@ const StepThree = ({ formInfoCarrier }) => {
             <span>Prev</span>
           </button>
           <button
+            disabled={
+              !formData.gdprConsent ||
+              !formData.privacyPolicyConsent ||
+              !formData.termsPolicyConsent
+            }
             type="button"
-            className={`gtr-btn global-btn mt-4 mx-2 `}
+            className={`gtr-btn global-btn mt-4 mx-2 ${
+              !formData.gdprConsent ||
+              !formData.privacyPolicyConsent ||
+              !formData.termsPolicyConsent
+                ? "bg-gray-400 cursor-not-allowed text-gray-600 opacity-[.7]"
+                : ""
+            }`}
             onClick={next}
           >
             <span>Next</span>

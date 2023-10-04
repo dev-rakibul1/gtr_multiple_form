@@ -7,4 +7,15 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+
+
+
+  extend: {
+    // Define custom background color class
+    backgroundColor: {
+      'gradient-custom': 'linear-gradient(24deg, #4502fa, #ea01ec)',
+    },
+  },
+
+
 }

@@ -46,7 +46,7 @@ const StepOne = ({ formInfoCarrier }) => {
               className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                 (formData.clientRegisteredName &&
                   formData.clientRegisteredName.length < 3) ||
-                formData.clientRegisteredName.length > 20
+                formData.clientRegisteredName.length > 30
                   ? "border-red-600 "
                   : " border-slate-300 "
               }`}
@@ -65,28 +65,16 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="client-trade-name"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Client Trade Name (If different from registered Name){" "}
-              <span className="text-xl font-bold text-red-500">*</span>
+              Client Trade Name (If different from registered Name, Optional){" "}
             </label>
             <input
               type="text"
               name="clientTradeName"
               id="client-trade-name"
               value={formData.clientTradeName}
-              className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                (formData.clientTradeName &&
-                  formData.clientTradeName.length < 3) ||
-                formData.clientTradeName.length > 20
-                  ? "border-red-600 "
-                  : " border-slate-300 "
-              }`}
+              className={`outline-0 border w-full border-slate-300 p-2 rounded-sm focus:border-blue-500 transition-all duration-300`}
               onChange={handleInputFields}
             />
-            {errorMeg?.clientTradeName && (
-              <small className="text-red-600">
-                {errorMeg?.clientTradeName}
-              </small>
-            )}
           </div>
 
           {/* 3. Email address */}
@@ -131,7 +119,7 @@ const StepOne = ({ formInfoCarrier }) => {
               value={formData.address}
               className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                 (formData.address && formData.address.length < 10) ||
-                formData.address.length > 50
+                formData.address.length > 70
                   ? "border-red-600 "
                   : " border-slate-300 "
               }`}
@@ -189,7 +177,7 @@ const StepOne = ({ formInfoCarrier }) => {
               id="office-phone"
               value={formData.officePhone}
               className={`outline-0 border  w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                formData.officePhone && !formData.officePhone.match(phoneRex)
+                formData.officePhone && !formData.officePhone === ""
                   ? "border-red-600"
                   : "border-slate-300"
               }`}
@@ -231,7 +219,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="social-id"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Social/apps ID to send push notification{" "}
+              Social ID to send push notification{" "}
               <span className="text-xl font-bold text-red-500">*</span>
             </label>
             <input
@@ -371,7 +359,7 @@ const StepOne = ({ formInfoCarrier }) => {
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.adminContactName &&
                     formData.adminContactName.length < 3) ||
-                  formData.adminContactName.length > 20
+                  formData.adminContactName.length > 30
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -400,7 +388,7 @@ const StepOne = ({ formInfoCarrier }) => {
                 value={formData.designation}
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.designation && formData.designation.length < 3) ||
-                  formData.designation.length > 20
+                  formData.designation.length > 70
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -422,7 +410,7 @@ const StepOne = ({ formInfoCarrier }) => {
               </label>
               <input
                 type="file"
-                accept=".jpg, .jpeg, .png"
+                accept=".jpg, .jpeg, .png, .pdf"
                 name="nameCard"
                 id="name-card"
                 // value={formData?.nameCard}
@@ -450,7 +438,7 @@ const StepOne = ({ formInfoCarrier }) => {
               </label>
               <input
                 type="file"
-                accept=".jpg, .jpeg, .png, .pdf"
+                accept=".jpg, .jpeg, .png, .pdf, .pdf"
                 name="nationalID"
                 id="national-id"
                 // value={formData.nationalID}
@@ -470,7 +458,44 @@ const StepOne = ({ formInfoCarrier }) => {
 
         {/* button */}
         <div className="mx-auto w-full text-center mt-12">
-          <button type="button" className="gtr-btn global-btn" onClick={next}>
+          <button
+            // disabled={
+            //   !formData.clientRegisteredName ||
+            //   !formData.emailAddress ||
+            //   !formData.address ||
+            //   !formData.judicialCountry ||
+            //   !formData.officePhone ||
+            //   !formData.socialId ||
+            //   !formData.yearsTrading ||
+            //   !formData.totalTurnover ||
+            //   !formData.noOfStaff ||
+            //   !formData.tradingCurrency ||
+            //   !formData.adminContactName ||
+            //   !formData.designation ||
+            //   !formData.nameCard ||
+            //   !formData.nationalID
+            // }
+            type="button"
+            className={`gtr-btn global-btn mt-4 mx-2 ${
+              !formData.clientRegisteredName ||
+              !formData.emailAddress ||
+              !formData.address ||
+              !formData.judicialCountry ||
+              !formData.officePhone ||
+              !formData.socialId ||
+              !formData.yearsTrading ||
+              !formData.totalTurnover ||
+              !formData.noOfStaff ||
+              !formData.tradingCurrency ||
+              !formData.adminContactName ||
+              !formData.designation ||
+              !formData.nameCard ||
+              !formData.nationalID
+                ? "bg-gray-400 cursor-not-allowed text-gray-600 opacity-[.7]"
+                : ""
+            }`}
+            onClick={next}
+          >
             <span>Next</span>
           </button>
         </div>
