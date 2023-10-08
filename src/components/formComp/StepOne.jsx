@@ -22,7 +22,9 @@ const StepOne = ({ formInfoCarrier }) => {
         <div className="gtr-form-step-1 gtr-form-step-title">
           {/* Form title */}
           <div className="">
-            <h3 className="text-lg md:text-xl py-1 md:py-2">Agent details</h3>
+            <h3 className="text-lg md:text-xl py-1 md:py-2 capitalize">
+              Agent details
+            </h3>
           </div>
         </div>
         {/* gtr-multiple-form-step-1 */}
@@ -65,7 +67,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="client-trade-name"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Client Trade Name (If different from registered Name, Optional){" "}
+              Client Trade Name (If different from registered Name){" "}
             </label>
             <input
               type="text"
@@ -83,7 +85,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="email-address"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Email address (Will be used as admin login ID){" "}
+              Email Address (Will be used as admin login ID){" "}
               <span className="text-xl font-bold text-red-500">*</span>
             </label>
             <input
@@ -136,7 +138,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="judicial-country"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Judicial country{" "}
+              Judicial Country{" "}
               <span className="text-xl font-bold text-red-500">*</span>
             </label>
             <select
@@ -172,12 +174,12 @@ const StepOne = ({ formInfoCarrier }) => {
               <span className="text-xl font-bold text-red-500">*</span>
             </label>
             <input
-              type="tel"
+              type="number"
               name="officePhone"
               id="office-phone"
               value={formData.officePhone}
               className={`outline-0 border  w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                formData.officePhone && !formData.officePhone === ""
+                formData.officePhone && formData.officePhone === ""
                   ? "border-red-600"
                   : "border-slate-300"
               }`}
@@ -194,7 +196,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="website"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Website (Optional)
+              Website
             </label>
             <input
               type="url"
@@ -219,8 +221,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="social-id"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Social ID to send push notification{" "}
-              <span className="text-xl font-bold text-red-500">*</span>
+              Social ID to send push notification
             </label>
             <input
               type="text"
@@ -230,9 +231,6 @@ const StepOne = ({ formInfoCarrier }) => {
               value={formData.socialId}
               onChange={handleInputFields}
             />
-            {errorMeg?.socialId && (
-              <small className="text-red-600">{errorMeg?.socialId}</small>
-            )}
           </div>
 
           {/* 9. Number of years client has been trading */}
@@ -241,7 +239,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="years-trading"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Number of years client has been trading{" "}
+              Number of Years Client has been Trading{" "}
               <span className="text-xl font-bold text-red-500">*</span>
             </label>
             <input
@@ -267,7 +265,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="total-turnover"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Last year Total Turnover{" "}
+              Last Year Total Turnover{" "}
               <span className="text-xl font-bold text-red-500">*</span>
             </label>
             <input
@@ -293,7 +291,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="no-of-staff"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              No of staff{" "}
+              No of Staff{" "}
               <span className="text-xl font-bold text-red-500">*</span>
             </label>
             <input
@@ -339,7 +337,7 @@ const StepOne = ({ formInfoCarrier }) => {
         </div>
 
         <div className="mt-7">
-          <h3 className="text-lg md:text-xl py-1 md:py-2 gtr-form-step-title">
+          <h3 className="text-lg md:text-xl py-1 md:py-2 gtr-form-step-title capitalize">
             Admin Contact Person Details
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-12">
@@ -387,8 +385,8 @@ const StepOne = ({ formInfoCarrier }) => {
                 id="designation"
                 value={formData.designation}
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  (formData.designation && formData.designation.length < 3) ||
-                  formData.designation.length > 70
+                  (formData.designation && formData.designation.length < 2) ||
+                  formData.designation.length > 20
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -459,22 +457,21 @@ const StepOne = ({ formInfoCarrier }) => {
         {/* button */}
         <div className="mx-auto w-full text-center mt-12">
           <button
-            // disabled={
-            //   !formData.clientRegisteredName ||
-            //   !formData.emailAddress ||
-            //   !formData.address ||
-            //   !formData.judicialCountry ||
-            //   !formData.officePhone ||
-            //   !formData.socialId ||
-            //   !formData.yearsTrading ||
-            //   !formData.totalTurnover ||
-            //   !formData.noOfStaff ||
-            //   !formData.tradingCurrency ||
-            //   !formData.adminContactName ||
-            //   !formData.designation ||
-            //   !formData.nameCard ||
-            //   !formData.nationalID
-            // }
+            disabled={
+              !formData.clientRegisteredName ||
+              !formData.emailAddress ||
+              !formData.address ||
+              !formData.judicialCountry ||
+              !formData.officePhone ||
+              !formData.yearsTrading ||
+              !formData.totalTurnover ||
+              !formData.noOfStaff ||
+              !formData.tradingCurrency ||
+              !formData.adminContactName ||
+              !formData.designation ||
+              !formData.nameCard ||
+              !formData.nationalID
+            }
             type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.clientRegisteredName ||
@@ -482,7 +479,6 @@ const StepOne = ({ formInfoCarrier }) => {
               !formData.address ||
               !formData.judicialCountry ||
               !formData.officePhone ||
-              !formData.socialId ||
               !formData.yearsTrading ||
               !formData.totalTurnover ||
               !formData.noOfStaff ||

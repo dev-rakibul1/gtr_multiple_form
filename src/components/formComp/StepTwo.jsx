@@ -13,15 +13,14 @@ const StepTwo = ({ formInfoCarrier }) => {
   let i = 0;
 
   do {
-    // if (i >= 10) {
-    //   break;
-    // }
-    testData.push(i);
+    if (i >= 16) {
+      break;
+    }
+    testData.push({
+      info: `shareholdersInfo${i + 1}`,
+    });
     i++;
   } while (i < formData.shareholderCount);
-
-  console.log(testData);
-  console.log("handleInputFields_______", formData);
 
   return (
     <div className="pb-16 ">
@@ -31,7 +30,7 @@ const StepTwo = ({ formInfoCarrier }) => {
           <div className="gtr-form-step-1 gtr-form-step-title">
             {/* Form title */}
             <div className="">
-              <h3 className="text-lg md:text-xl py-1 md:py-2">
+              <h3 className="text-lg md:text-xl py-1 md:py-2 capitalize">
                 Finance Contact Details
               </h3>
             </div>
@@ -79,8 +78,8 @@ const StepTwo = ({ formInfoCarrier }) => {
                 value={formData.financeContactDesignation}
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.financeContactDesignation &&
-                    formData.financeContactDesignation.length < 3) ||
-                  formData.financeContactDesignation.length > 70
+                    formData.financeContactDesignation.length < 2) ||
+                  formData.financeContactDesignation.length > 20
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -97,7 +96,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="finance-contact-email"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Email address{" "}
+                Email Address{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -129,7 +128,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
-                type="tel"
+                type="number"
                 name="financeContactPhone"
                 id="finance-contact-phone"
                 value={formData.financeContactPhone}
@@ -155,7 +154,7 @@ const StepTwo = ({ formInfoCarrier }) => {
           <div className="gtr-form-step-1 gtr-form-step-title">
             {/* Form title */}
             <div className="">
-              <h3 className="text-lg md:text-xl py-1 md:py-2">
+              <h3 className="text-lg md:text-xl py-1 md:py-2 capitalize">
                 Reservation Contact Details
               </h3>
             </div>
@@ -205,8 +204,8 @@ const StepTwo = ({ formInfoCarrier }) => {
                 value={formData.reservationContactDesignation}
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.reservationContactDesignation &&
-                    formData.reservationContactDesignation.length < 3) ||
-                  formData.reservationContactDesignation.length > 70
+                    formData.reservationContactDesignation.length < 2) ||
+                  formData.reservationContactDesignation.length > 20
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -223,7 +222,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="reservation-contact-email"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Email address{" "}
+                Email Address{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -255,7 +254,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
-                type="tel"
+                type="number"
                 name="reservationContactPhone"
                 id="reservation-contact-phone"
                 value={formData.reservationContactPhone}
@@ -281,7 +280,7 @@ const StepTwo = ({ formInfoCarrier }) => {
           <div className="gtr-form-step-1 gtr-form-step-title">
             {/* Form title */}
             <div className="">
-              <h3 className="text-lg md:text-xl py-1 md:py-2">
+              <h3 className="text-lg md:text-xl py-1 md:py-2 capitalize">
                 Emergency Contact Details
               </h3>
             </div>
@@ -330,8 +329,8 @@ const StepTwo = ({ formInfoCarrier }) => {
                 value={formData.emergencyContactDesignation}
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
                   (formData.emergencyContactDesignation &&
-                    formData.emergencyContactDesignation.length < 3) ||
-                  formData.emergencyContactDesignation.length > 70
+                    formData.emergencyContactDesignation.length < 2) ||
+                  formData.emergencyContactDesignation.length > 20
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -348,7 +347,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="emergency-contact-email"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Email address{" "}
+                Email Address{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -380,7 +379,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
-                type="tel"
+                type="number"
                 name="emergencyContactPhone"
                 id="emergency-contact-phone"
                 value={formData.emergencyContactPhone}
@@ -406,7 +405,7 @@ const StepTwo = ({ formInfoCarrier }) => {
           <div className="gtr-form-step-1 gtr-form-step-title">
             {/* Form title */}
             <div className="">
-              <h3 className="text-lg md:text-xl py-1 md:py-2">
+              <h3 className="text-lg md:text-xl py-1 md:py-2 capitalize">
                 Ownership Structure
               </h3>
             </div>
@@ -419,7 +418,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="shareholder-count"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                How Many Shareholders (Max 10){" "}
+                How Many Shareholders
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -458,28 +457,29 @@ const StepTwo = ({ formInfoCarrier }) => {
                       type="text"
                       name={`shareholdersInfo${i + 1}`}
                       id={`shareholders-info${i + 1}`}
-                      // value={``}
+                      // value={`${formValue}`}
                       className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 border-slate-300`}
                       onChange={handleInputFields}
                     />
                   </div>
 
-                  <div className="">
+                  <div className="relative">
                     <label
                       htmlFor={`shareholders-ratio${i + 1}`}
                       className="py-1 text-base text-gray-500 inline-block normal-case"
                     >
-                      Ratio Name{" "}
+                      Ratio{" "}
                       <span className="text-xl font-bold text-red-500">*</span>
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       name={`shareholdersRatio${i + 1}`}
                       id={`shareholders-ratio${i + 1}`}
                       // value={`${formData.shareholdersRatio}${i + 1}`}
-                      className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 border-slate-300`}
+                      className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 border-slate-300 `}
                       onChange={handleInputFields}
                     />
+                    <span className="ratio-icon">%</span>
                   </div>
                 </div>
               ))}
@@ -492,7 +492,9 @@ const StepTwo = ({ formInfoCarrier }) => {
           <div className="gtr-form-step-1 gtr-form-step-title">
             {/* Form title */}
             <div className="">
-              <h3 className="text-lg md:text-xl py-1 md:py-2">Complinance</h3>
+              <h3 className="text-lg md:text-xl py-1 md:py-2 capitalize">
+                Complinance
+              </h3>
             </div>
           </div>
 
@@ -531,7 +533,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="tax-registration-no"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Tax / VAT Registration No{" "}
+                TAX / VAT Registration No{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -595,25 +597,24 @@ const StepTwo = ({ formInfoCarrier }) => {
             <span>Prev</span>
           </button>
           <button
-            // disabled={
-            //   !formData.financeContactName ||
-            //   !formData.financeContactDesignation ||
-            //   !formData.financeContactEmail ||
-            //   !formData.financeContactPhone ||
-            //   !formData.reservationContactName ||
-            //   !formData.reservationContactDesignation ||
-            //   !formData.reservationContactEmail ||
-            //   !formData.reservationContactPhone ||
-            //   !formData.emergencyContactName ||
-            //   !formData.emergencyContactDesignation ||
-            //   !formData.emergencyContactEmail ||
-            //   !formData.emergencyContactPhone ||
-            //   !formData.shareholderCount ||
-            //   !formData.shareholdersInfo ||
-            //   !formData.registrationDocs ||
-            //   !formData.taxRegistrationNo ||
-            //   !formData.travelAgentLicense
-            // }
+            disabled={
+              !formData.financeContactName ||
+              !formData.financeContactDesignation ||
+              !formData.financeContactEmail ||
+              !formData.financeContactPhone ||
+              !formData.reservationContactName ||
+              !formData.reservationContactDesignation ||
+              !formData.reservationContactEmail ||
+              !formData.reservationContactPhone ||
+              !formData.emergencyContactName ||
+              !formData.emergencyContactDesignation ||
+              !formData.emergencyContactEmail ||
+              !formData.emergencyContactPhone ||
+              !formData.shareholderCount ||
+              !formData.registrationDocs ||
+              !formData.taxRegistrationNo ||
+              !formData.travelAgentLicense
+            }
             type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.financeContactName ||
@@ -629,7 +630,6 @@ const StepTwo = ({ formInfoCarrier }) => {
               !formData.emergencyContactEmail ||
               !formData.emergencyContactPhone ||
               !formData.shareholderCount ||
-              !formData.shareholdersInfo ||
               !formData.registrationDocs ||
               !formData.taxRegistrationNo ||
               !formData.travelAgentLicense

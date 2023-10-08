@@ -16,9 +16,6 @@ const StepThree = ({ formInfoCarrier }) => {
     handleFlightRadioChange,
   } = formInfoCarrier;
 
-  console.log(formData);
-  console.log(errorMeg);
-
   return (
     <div className="pb-16 ">
       <div className="border bg-white w-full p-2 md:p-7">
@@ -28,14 +25,14 @@ const StepThree = ({ formInfoCarrier }) => {
             {/* Form title */}
             <div className="">
               <h3 className="text-lg md:text-xl py-1 md:py-2">
-                Understanding Content Requirements
+                Understanding Content Requirements (Hotel Content)
               </h3>
             </div>
 
             {/* hotel content yes/no */}
             <div className="">
-              <p>If required, Please select "Yes" </p>
-              <div className="flex flex-col">
+              <p>If it is not required, please select 'No' </p>
+              <div className="flex justify-start items-center">
                 <label>
                   <input
                     type="radio"
@@ -45,7 +42,7 @@ const StepThree = ({ formInfoCarrier }) => {
                   />
                   <span className="ml-2">Yes</span>
                 </label>
-                <label>
+                <label className="ml-4">
                   <input
                     type="radio"
                     value="no"
@@ -170,7 +167,7 @@ const StepThree = ({ formInfoCarrier }) => {
                 htmlFor="average-purchase-value"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Average Purchase Value for per transaction{" "}
+                Average Purchase Value for Per Transaction{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -204,7 +201,7 @@ const StepThree = ({ formInfoCarrier }) => {
                 htmlFor="monthly-transaction"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Total appx Monthly Transaction{" "}
+                Total Approx Monthly Transaction{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -236,14 +233,14 @@ const StepThree = ({ formInfoCarrier }) => {
             {/* Form title */}
             <div className="">
               <h3 className="text-lg md:text-xl py-1 md:py-2">
-                Understanding Content Requirements
+                Understanding Content Requirements (Flight Content)
               </h3>
             </div>
 
             {/* Flight content yes/no */}
             <div className="">
-              <p>If required, Please select "Yes" </p>
-              <div className="flex flex-col">
+              <p>If it is not required, please select 'No' </p>
+              <div className="flex justify-start items-center">
                 <label>
                   <input
                     type="radio"
@@ -253,7 +250,7 @@ const StepThree = ({ formInfoCarrier }) => {
                   />
                   <span className="ml-2">Yes</span>
                 </label>
-                <label>
+                <label className="ml-4">
                   <input
                     type="radio"
                     value="no"
@@ -380,7 +377,7 @@ const StepThree = ({ formInfoCarrier }) => {
                 htmlFor="average-purchase-value-2"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Average Purchase Value for per transaction{" "}
+                Average Purchase Value for Per Transaction{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -414,7 +411,7 @@ const StepThree = ({ formInfoCarrier }) => {
                 htmlFor="monthly-transaction-2"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Total appx Monthly Transaction{" "}
+                Total Approx Monthly Transaction{" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
@@ -438,7 +435,7 @@ const StepThree = ({ formInfoCarrier }) => {
               )}
             </div>
 
-            {/* 6 - Apprx Look to Book Ratio (100:1) */}
+            {/* 6 - Approx Look to Book Ratio (100:1) */}
             <div
               className={`mt-3 ${
                 isFlightChecked === false && "text-gray-200 cursor-not-allowed"
@@ -448,16 +445,19 @@ const StepThree = ({ formInfoCarrier }) => {
                 htmlFor="look-to-book-ratio"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Apprx Look to Book Ratio (100:1){" "}
+                Approx Look to Book Ratio (100:1){" "}
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
-                type="text"
+                type="number"
                 name="lookToBookRatio"
                 id="look-to-book-ratio"
                 value={formData.lookToBookRatio}
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  formData.lookToBookRatio && formData.lookToBookRatio === ""
+                  (formData.lookToBookRatio &&
+                    formData.lookToBookRatio === "") ||
+                  parseInt(formData.lookToBookRatio) > 100 ||
+                  parseInt(formData.lookToBookRatio) < 1
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}
@@ -471,34 +471,14 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
           </div>
 
-          <div className="mt-7">
-            {/* 4 - Click Box for Acceptance GPDR Cookie Consent Management */}
-            <div className="mt-3">
-              <input
-                type="checkbox"
-                name="gdprConsent"
-                id="gdpr-consent"
-                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
-                onClick={handleCheckboxChange1}
-                value={formData.gdprConsent}
-                checked={formData.gdprConsent}
-              />
-
-              <label
-                htmlFor="gdpr-consent"
-                className=" ml-4 text-base text-gray-500 inline-block normal-case"
-              >
-                Click Box for Acceptance GPDR Cookie Consent Management
-              </label>
-            </div>
-
-            {/* 5 - Click box for accept privacy policy */}
-            <div className="mt-3">
+          <div className="mt-24">
+            {/* 1 - Accept Terms & Conditions of Use */}
+            <div className="mt-3 flex justify-start items-center">
               <input
                 type="checkbox"
                 name="privacyPolicyConsent"
                 id="privacy-policy-consent"
-                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+                className=" rounded-sm focus:border-blue-500 transition-all duration-300"
                 onClick={handleCheckboxChange2}
                 value={formData.privacyPolicyConsent}
                 checked={formData.privacyPolicyConsent}
@@ -506,30 +486,62 @@ const StepThree = ({ formInfoCarrier }) => {
 
               <label
                 htmlFor="privacy-policy-consent"
-                className=" ml-4 text-base text-gray-500 inline-block normal-case"
+                className=" flex justify-start items-start flex-col ml-4 text-base text-gray-500 normal-case"
               >
-                Click box for accept privacy policy
+                <span className="flex items-center justify-start font-light text-base">
+                  Accept
+                  <a href="#" className="ml-2 text-blue-600">
+                    Terms & Conditions
+                  </a>
+                  <span className="inline-block ml-1"> of Use</span>
+                  <span className="text-xl font-bold text-red-500 ml-1">*</span>
+                </span>
               </label>
             </div>
 
-            {/* 6 - Click box for terms to use policy for Credit Card use to avoid fraud dispute */}
-            <div className="mt-3">
+            {/* 2 - Click Box for Acceptance GPDR Cookie Consent Management */}
+            <div className="flex justify-center items-start">
               <input
                 type="checkbox"
-                name="termsPolicyConsent"
-                id="terms-policy-consent"
-                className="p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
-                onClick={handleCheckboxChange3}
-                value={formData.termsPolicyConsent}
-                checked={formData.termsPolicyConsent}
+                name="gdprConsent"
+                id="gdpr-consent"
+                className=" rounded-sm focus:border-blue-500 transition-all duration-300 mt-2"
+                onClick={handleCheckboxChange1}
+                value={formData.gdprConsent}
+                checked={formData.gdprConsent}
               />
 
               <label
-                htmlFor="terms-policy-consent"
-                className="ml-4 text-base text-gray-500 inline-block normal-case"
+                htmlFor="gdpr-consent"
+                className="flex items-start justify-start font-light text-xl flex-col ml-4"
               >
-                Click box for terms to use policy for Credit Card use to avoid
-                fraud dispute
+                <span className="flex items-center justify-start font-light text-base">
+                  Accept{" "}
+                  <a href="#" className="ml-2 text-blue-600">
+                    {" "}
+                    Privacy Policy
+                  </a>
+                  <span className="text-xl font-bold text-red-500 ml-1">
+                    {" "}
+                    *
+                  </span>
+                </span>
+                <p className="mt-2 text-xs">
+                  I have read the GTRSystem site
+                  <a href="#" className="ml-1 text-blue-600">
+                    Privacy Policy
+                  </a>
+                  , the terms of which are incorporated herein, and I agree that
+                  the terms of such policy are reasonable. I consent to the use
+                  of my personal information by GTRSystem and/or its Third Party
+                  Suppliers in accordance with the terms of and for the purposes
+                  set forth in the GTRSystem site{" "}
+                  <a href="#" className="ml-2 text-blue-600">
+                    {" "}
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
               </label>
             </div>
           </div>
@@ -545,16 +557,10 @@ const StepThree = ({ formInfoCarrier }) => {
             <span>Prev</span>
           </button>
           <button
-            disabled={
-              !formData.gdprConsent ||
-              !formData.privacyPolicyConsent ||
-              !formData.termsPolicyConsent
-            }
+            disabled={!formData.gdprConsent || !formData.privacyPolicyConsent}
             type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
-              !formData.gdprConsent ||
-              !formData.privacyPolicyConsent ||
-              !formData.termsPolicyConsent
+              !formData.gdprConsent || !formData.privacyPolicyConsent
                 ? "bg-gray-400 cursor-not-allowed text-gray-600 opacity-[.7]"
                 : ""
             }`}
