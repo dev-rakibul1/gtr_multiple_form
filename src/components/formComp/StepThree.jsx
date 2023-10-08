@@ -471,7 +471,7 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
           </div>
 
-          <div className="mt-24">
+          <div className="mt-16">
             {/* 1 - Accept Terms & Conditions of Use */}
             <div className="mt-3 flex justify-start items-center">
               <input
@@ -535,9 +535,8 @@ const StepThree = ({ formInfoCarrier }) => {
                   the terms of such policy are reasonable. I consent to the use
                   of my personal information by GTRSystem and/or its Third Party
                   Suppliers in accordance with the terms of and for the purposes
-                  set forth in the GTRSystem site{" "}
-                  <a href="#" className="ml-2 text-blue-600">
-                    {" "}
+                  set forth in the GTRSystem site
+                  <a href="#" className="ml-1 text-blue-600">
                     Privacy Policy
                   </a>
                   .
