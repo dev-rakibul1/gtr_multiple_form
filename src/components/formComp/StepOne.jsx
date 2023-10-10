@@ -457,6 +457,7 @@ const StepOne = ({ formInfoCarrier }) => {
         {/* button */}
         <div className="mx-auto w-full text-center mt-12">
           <button
+            type="button"
             disabled={
               !formData.clientRegisteredName ||
               !formData.emailAddress ||
@@ -472,7 +473,6 @@ const StepOne = ({ formInfoCarrier }) => {
               !formData.nameCard ||
               !formData.nationalID
             }
-            type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.clientRegisteredName ||
               !formData.emailAddress ||

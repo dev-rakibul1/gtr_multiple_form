@@ -144,7 +144,7 @@ const GtrForm = () => {
 
   // Ratio calculation
 
-  const aData = [
+  const isCheckValidNumber = [
     formData.shareholdersRatio1,
     formData.shareholdersRatio2,
     formData.shareholdersRatio3,
@@ -165,7 +165,7 @@ const GtrForm = () => {
   // Create a new array with only valid numbers
   const validNumbers = [];
 
-  aData.forEach((item) => {
+  isCheckValidNumber.forEach((item) => {
     const parsedValue = parseInt(item);
     if (!isNaN(parsedValue)) {
       validNumbers.push(parsedValue);
@@ -175,7 +175,7 @@ const GtrForm = () => {
 
   console.log(ratioSum);
 
-  const handleNextButton = (e) => {
+  const handleNextButton = () => {
     // Form step 1
     if (currentStep === 1) {
       const newErrorMeg = {};
