@@ -1,4 +1,5 @@
 import React from "react";
+const approx_pattern = /^\d+:1$/;
 
 const StepThree = ({ formInfoCarrier }) => {
   const {
@@ -449,15 +450,13 @@ const StepThree = ({ formInfoCarrier }) => {
                 <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
-                type="number"
+                type="text"
                 name="lookToBookRatio"
                 id="look-to-book-ratio"
                 value={formData.lookToBookRatio}
                 className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  (formData.lookToBookRatio &&
-                    formData.lookToBookRatio === "") ||
-                  parseInt(formData.lookToBookRatio) > 100 ||
-                  parseInt(formData.lookToBookRatio) < 1
+                  formData.lookToBookRatio &&
+                  !approx_pattern.test(formData.lookToBookRatio)
                     ? "border-red-600 "
                     : " border-slate-300 "
                 }`}

@@ -177,148 +177,148 @@ const GtrForm = () => {
 
   const handleNextButton = () => {
     // Form step 1
-    if (currentStep === 1) {
-      const newErrorMeg = {};
+    // if (currentStep === 1) {
+    //   const newErrorMeg = {};
 
-      // Client registered name
-      if (formData.clientRegisteredName === "") {
-        newErrorMeg.clientRegisteredName =
-          "Client registered name is required!";
-      } else if (
-        formData.clientRegisteredName.length < 3 ||
-        formData.clientRegisteredName.length > 30
-      ) {
-        newErrorMeg.clientRegisteredName =
-          "Client registered name must be between 3 and 30 characters";
-      }
+    //   // Client registered name
+    //   if (formData.clientRegisteredName === "") {
+    //     newErrorMeg.clientRegisteredName =
+    //       "Client registered name is required!";
+    //   } else if (
+    //     formData.clientRegisteredName.length < 3 ||
+    //     formData.clientRegisteredName.length > 30
+    //   ) {
+    //     newErrorMeg.clientRegisteredName =
+    //       "Client registered name must be between 3 and 30 characters";
+    //   }
 
-      // Client Trade Name
-      // if (formData.clientTradeName === "") {
-      //   newErrorMeg.clientTradeName = "Client trade name is required!";
-      // } else if (
-      //   formData.clientTradeName.length < 3 ||
-      //   formData.clientTradeName.length > 20
-      // ) {
-      //   newErrorMeg.clientTradeName =
-      //     "Client trade name must be between 3 and 20 characters";
-      // }
+    //   // Client Trade Name
+    //   // if (formData.clientTradeName === "") {
+    //   //   newErrorMeg.clientTradeName = "Client trade name is required!";
+    //   // } else if (
+    //   //   formData.clientTradeName.length < 3 ||
+    //   //   formData.clientTradeName.length > 20
+    //   // ) {
+    //   //   newErrorMeg.clientTradeName =
+    //   //     "Client trade name must be between 3 and 20 characters";
+    //   // }
 
-      // Email address (Will be used as admin login ID)
-      if (formData.emailAddress === "") {
-        newErrorMeg.emailAddress = "Email address is required!";
-      } else if (!formData.emailAddress.match(emailRex)) {
-        newErrorMeg.emailAddress = "Email is not valid!";
-      }
+    //   // Email address (Will be used as admin login ID)
+    //   if (formData.emailAddress === "") {
+    //     newErrorMeg.emailAddress = "Email address is required!";
+    //   } else if (!formData.emailAddress.match(emailRex)) {
+    //     newErrorMeg.emailAddress = "Email is not valid!";
+    //   }
 
-      // Address
-      if (formData.address === "") {
-        newErrorMeg.address = "Address is required!";
-      } else if (formData.address.length < 10 || formData.address.length > 70) {
-        newErrorMeg.address = "Address must be between 10 and 70 characters";
-      }
+    //   // Address
+    //   if (formData.address === "") {
+    //     newErrorMeg.address = "Address is required!";
+    //   } else if (formData.address.length < 10 || formData.address.length > 70) {
+    //     newErrorMeg.address = "Address must be between 10 and 70 characters";
+    //   }
 
-      // judicial Country
-      if (formData.judicialCountry === "") {
-        newErrorMeg.judicialCountry = "Judicial country is required!";
-      }
+    //   // judicial Country
+    //   if (formData.judicialCountry === "") {
+    //     newErrorMeg.judicialCountry = "Judicial country is required!";
+    //   }
 
-      // Office phone number
-      if (formData.officePhone === "") {
-        newErrorMeg.officePhone = "Office phone number is required!";
-      }
+    //   // Office phone number
+    //   if (formData.officePhone === "") {
+    //     newErrorMeg.officePhone = "Office phone number is required!";
+    //   }
 
-      // website
-      const websiteUrl =
-        /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}(\S*)$/;
-      if (formData.website && !formData.website.match(websiteUrl)) {
-        newErrorMeg.website = "Website url is not valid";
-      }
+    //   // website
+    //   const websiteUrl =
+    //     /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}(\S*)$/;
+    //   if (formData.website && !formData.website.match(websiteUrl)) {
+    //     newErrorMeg.website = "Website url is not valid";
+    //   }
 
-      // socialId
-      // if (!formData.socialId && formData.socialId === "") {
-      //   newErrorMeg.socialId = "Social id or app id is required!";
-      // }
+    //   // socialId
+    //   // if (!formData.socialId && formData.socialId === "") {
+    //   //   newErrorMeg.socialId = "Social id or app id is required!";
+    //   // }
 
-      // years Trading
-      if (formData.yearsTrading === "") {
-        newErrorMeg.yearsTrading = "Year trading is required!";
-      } else if (formData.yearsTrading < 0) {
-        newErrorMeg.yearsTrading = "Your trading year number is not valid.";
-      }
+    //   // years Trading
+    //   if (formData.yearsTrading === "") {
+    //     newErrorMeg.yearsTrading = "Year trading is required!";
+    //   } else if (formData.yearsTrading < 0) {
+    //     newErrorMeg.yearsTrading = "Your trading year number is not valid.";
+    //   }
 
-      // Total turnover
-      if (formData.totalTurnover === "") {
-        newErrorMeg.totalTurnover = "Total turnover is required!";
-      } else if (formData.totalTurnover < 0) {
-        newErrorMeg.totalTurnover = "Your Total turnover number is not valid.";
-      }
+    //   // Total turnover
+    //   if (formData.totalTurnover === "") {
+    //     newErrorMeg.totalTurnover = "Total turnover is required!";
+    //   } else if (formData.totalTurnover < 0) {
+    //     newErrorMeg.totalTurnover = "Your Total turnover number is not valid.";
+    //   }
 
-      // no Of Staff
-      if (formData.noOfStaff === "") {
-        newErrorMeg.noOfStaff = "No of staff is required!";
-      } else if (formData.noOfStaff < 0) {
-        newErrorMeg.noOfStaff = "No of staff is number not valid.";
-      }
+    //   // no Of Staff
+    //   if (formData.noOfStaff === "") {
+    //     newErrorMeg.noOfStaff = "No of staff is required!";
+    //   } else if (formData.noOfStaff < 0) {
+    //     newErrorMeg.noOfStaff = "No of staff is number not valid.";
+    //   }
 
-      // trading Currency
-      if (!formData.tradingCurrency && formData.tradingCurrency === "") {
-        newErrorMeg.tradingCurrency = "Trading currency is required!";
-      }
+    //   // trading Currency
+    //   if (!formData.tradingCurrency && formData.tradingCurrency === "") {
+    //     newErrorMeg.tradingCurrency = "Trading currency is required!";
+    //   }
 
-      // Admin Contact Person Details
-      // Admin client name
-      if (formData.adminContactName === "") {
-        newErrorMeg.adminContactName = "Name is required!";
-      } else if (
-        formData.adminContactName.length < 3 ||
-        formData.adminContactName.length > 30
-      ) {
-        newErrorMeg.adminContactName =
-          "Name must be between 3 and 30 characters";
-      }
+    //   // Admin Contact Person Details
+    //   // Admin client name
+    //   if (formData.adminContactName === "") {
+    //     newErrorMeg.adminContactName = "Name is required!";
+    //   } else if (
+    //     formData.adminContactName.length < 3 ||
+    //     formData.adminContactName.length > 30
+    //   ) {
+    //     newErrorMeg.adminContactName =
+    //       "Name must be between 3 and 30 characters";
+    //   }
 
-      // Designation
-      if (formData.designation === "") {
-        newErrorMeg.designation = "Designation is required!";
-      } else if (
-        formData.designation.length < 2 ||
-        formData.designation.length > 20
-      ) {
-        newErrorMeg.designation =
-          "Designation must be between 2 and 20 characters";
-      }
+    //   // Designation
+    //   if (formData.designation === "") {
+    //     newErrorMeg.designation = "Designation is required!";
+    //   } else if (
+    //     formData.designation.length < 2 ||
+    //     formData.designation.length > 20
+    //   ) {
+    //     newErrorMeg.designation =
+    //       "Designation must be between 2 and 20 characters";
+    //   }
 
-      // image validation
-      if (formData.nameCard === "") {
-        newErrorMeg.nameCard = "Name card is required!";
-      } else if (
-        !formData.nameCard.toLowerCase().endsWith(".jpg") &&
-        !formData.nameCard.toLowerCase().endsWith(".png") &&
-        !formData.nameCard.toLowerCase().endsWith(".pdf") &&
-        !formData.nameCard.toLowerCase().endsWith(".jpeg")
-      ) {
-        newErrorMeg.nameCard =
-          "Please select a valid image file (jpg, jpeg, png or pdf).";
-      }
-      // National id
-      if (formData.nationalID === "") {
-        newErrorMeg.nationalID = "Name card is required!";
-      } else if (
-        !formData.nameCard.toLowerCase().endsWith(".jpg") &&
-        !formData.nameCard.toLowerCase().endsWith(".png") &&
-        !formData.nameCard.toLowerCase().endsWith(".pdf") &&
-        !formData.nameCard.toLowerCase().endsWith(".jpeg")
-      ) {
-        newErrorMeg.nationalID =
-          "Please select a valid image file (jpg, jpeg, png or pdf).";
-      }
+    //   // image validation
+    //   if (formData.nameCard === "") {
+    //     newErrorMeg.nameCard = "Name card is required!";
+    //   } else if (
+    //     !formData.nameCard.toLowerCase().endsWith(".jpg") &&
+    //     !formData.nameCard.toLowerCase().endsWith(".png") &&
+    //     !formData.nameCard.toLowerCase().endsWith(".pdf") &&
+    //     !formData.nameCard.toLowerCase().endsWith(".jpeg")
+    //   ) {
+    //     newErrorMeg.nameCard =
+    //       "Please select a valid image file (jpg, jpeg, png or pdf).";
+    //   }
+    //   // National id
+    //   if (formData.nationalID === "") {
+    //     newErrorMeg.nationalID = "Name card is required!";
+    //   } else if (
+    //     !formData.nameCard.toLowerCase().endsWith(".jpg") &&
+    //     !formData.nameCard.toLowerCase().endsWith(".png") &&
+    //     !formData.nameCard.toLowerCase().endsWith(".pdf") &&
+    //     !formData.nameCard.toLowerCase().endsWith(".jpeg")
+    //   ) {
+    //     newErrorMeg.nationalID =
+    //       "Please select a valid image file (jpg, jpeg, png or pdf).";
+    //   }
 
-      // error handling meg
-      if (Object.keys(newErrorMeg).length > 0) {
-        setErrorMeg(newErrorMeg);
-        return;
-      }
-    }
+    //   // error handling meg
+    //   if (Object.keys(newErrorMeg).length > 0) {
+    //     setErrorMeg(newErrorMeg);
+    //     return;
+    //   }
+    // }
 
     // Form step 2
     if (currentStep === 2) {
@@ -326,78 +326,73 @@ const GtrForm = () => {
 
       // -------------------FINANCE CONTACT DETAILS--------------------
       // Finance contact name
-      if (formData.financeContactName === "") {
-        newErrorMeg.financeContactName = "Finance contact name is required!";
-      } else if (
-        formData.financeContactName.length < 3 ||
-        formData.financeContactName.length > 70
+      if (
+        formData.financeContactName &&
+        (formData.financeContactName.length < 3 ||
+          formData.financeContactName.length > 70)
       ) {
         newErrorMeg.financeContactName =
           "Finance contact name must be between 3 and 70 characters";
       }
 
       // Finance designation name
-      if (formData.financeContactDesignation === "") {
-        newErrorMeg.financeContactDesignation =
-          "Finance contact designation is required!";
-      } else if (
-        formData.financeContactDesignation.length < 2 ||
-        formData.financeContactDesignation.length > 20
+      if (
+        formData.financeContactDesignation &&
+        (formData.financeContactDesignation.length < 2 ||
+          formData.financeContactDesignation.length > 20)
       ) {
         newErrorMeg.financeContactDesignation =
           "Finance contact designation must be between 2 and 20 characters";
       }
 
       // Finance Contact Email
-      if (formData.financeContactEmail === "") {
-        newErrorMeg.financeContactEmail = "Finance email is required!";
-      } else if (!formData.financeContactEmail.match(emailRex)) {
+      if (
+        formData.financeContactName &&
+        !formData.financeContactEmail.match(emailRex)
+      ) {
         newErrorMeg.financeContactEmail = "Finance email is not valid!";
       }
 
-      // Finance phone number
-      if (formData.financeContactPhone === "") {
-        newErrorMeg.financeContactPhone = "Finance phone number is required!";
-      }
+      // // Finance phone number
+      // if (formData.financeContactPhone === "") {
+      //   newErrorMeg.financeContactPhone = "Finance phone number is required!";
+      // }
 
-      // ------------------- Reservation CONTACT DETAILS--------------------
+      // // ------------------- Reservation CONTACT DETAILS--------------------
 
       // Reservation contact name
-      if (formData.reservationContactName === "") {
-        newErrorMeg.reservationContactName =
-          "Reservation contact name is required!";
-      } else if (
-        formData.reservationContactName.length < 2 ||
-        formData.reservationContactName.length > 20
+      if (
+        formData.reservationContactName &&
+        (formData.reservationContactName.length < 2 ||
+          formData.reservationContactName.length > 20)
       ) {
         newErrorMeg.reservationContactName =
           "Reservation contact name must be between 2 and 20 characters";
       }
 
       // Reservation designation
-      if (formData.reservationContactDesignation === "") {
-        newErrorMeg.reservationContactDesignation =
-          "Reservation contact designation is required!";
-      } else if (
-        formData.reservationContactDesignation.length < 2 ||
-        formData.reservationContactDesignation.length > 20
+      if (
+        formData.reservationContactDesignation &&
+        (formData.reservationContactDesignation.length < 2 ||
+          formData.reservationContactDesignation.length > 20)
       ) {
         newErrorMeg.reservationContactDesignation =
           "Reservation contact designation must be between 2 and 20 characters";
       }
 
       // Reservation Contact Email
-      if (formData.reservationContactEmail === "") {
-        newErrorMeg.reservationContactEmail = "Reservation email is required!";
-      } else if (!formData.reservationContactEmail.match(emailRex)) {
+      if (
+        formData.reservationContactEmail &&
+        !formData.reservationContactEmail.match(emailRex)
+      ) {
         newErrorMeg.reservationContactEmail = "Reservation email is not valid!";
       }
 
-      // Reservation phone number
-      if (formData.reservationContactPhone === "") {
-        newErrorMeg.reservationContactPhone =
-          "Reservation phone number is required!";
-      }
+      // // Reservation phone number
+      // if (formData.reservationContactPhone === "") {
+      //   newErrorMeg.reservationContactPhone =
+      //     "Reservation phone number is required!";
+      // }
 
       // ------------------- EMERGENCY CONTACT DETAILS--------------------
       // Emergency contact name
@@ -578,15 +573,16 @@ const GtrForm = () => {
           newErrorMeg.monthlyTransaction2 =
             "Total appx monthly transaction no positive value.";
         }
-
-        // Apprx Look to Book Ratio (100:1)
+        const approx_pattern = /^\d+:1$/;
+        // Approx Look to Book Ratio (100:1)
         if (formData.lookToBookRatio === "") {
           newErrorMeg.lookToBookRatio = "Look to book ratio is required!";
         } else if (
-          parseInt(formData.lookToBookRatio) < 1 ||
-          parseInt(formData.lookToBookRatio) > 100
+          formData.lookToBookRatio &&
+          !approx_pattern.test(formData.lookToBookRatio)
         ) {
-          newErrorMeg.lookToBookRatio = "The book ratio must be between 1-100";
+          newErrorMeg.lookToBookRatio =
+            "Please you provide a valid amount like (amount:1)";
         }
       }
 

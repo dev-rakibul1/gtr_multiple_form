@@ -234,7 +234,7 @@ const StepOne = ({ formInfoCarrier }) => {
           </div>
 
           {/* 9. Number of years client has been trading */}
-          <div className="mt-3">
+          {/* <div className="mt-3">
             <label
               htmlFor="years-trading"
               className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -257,10 +257,38 @@ const StepOne = ({ formInfoCarrier }) => {
             {errorMeg?.yearsTrading && (
               <small className="text-red-600">{errorMeg?.yearsTrading}</small>
             )}
+          </div> */}
+
+          <div className="mt-3">
+            <label
+              htmlFor="years-trading"
+              className="py-1 text-base text-gray-500 inline-block normal-case"
+            >
+              Number of Years Client has been Trading{" "}
+              <span className="text-xl font-bold text-red-500">*</span>
+            </label>
+            <select
+              className="outline-0 border border-slate-300 w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+              name="yearsTrading"
+              id="years-trading"
+              value={formData.yearsTrading}
+              onChange={handleInputFields}
+            >
+              <option className="">Select Years of trading</option>
+              <option value="0-5">0-5</option>
+              <option value="5-10">5-10</option>
+              <option value="10-15">10-15</option>
+              <option value="10-15">15-20</option>
+              <option value="20-25">20-25</option>
+              <option value="25+">25+</option>
+            </select>
+            {errorMeg?.yearsTrading && (
+              <small className="text-red-600">{errorMeg?.yearsTrading}</small>
+            )}
           </div>
 
           {/* 10. Last year Total Turnover */}
-          <div className="mt-3">
+          {/* <div className="mt-3">
             <label
               htmlFor="total-turnover"
               className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -283,10 +311,37 @@ const StepOne = ({ formInfoCarrier }) => {
             {errorMeg?.totalTurnover && (
               <small className="text-red-600">{errorMeg?.totalTurnover}</small>
             )}
+          </div> */}
+
+          <div className="mt-3">
+            <label
+              htmlFor="total-turnover"
+              className="py-1 text-base text-gray-500 inline-block normal-case"
+            >
+              Last Year Total Turnover{" "}
+              <span className="text-xl font-bold text-red-500">*</span>
+            </label>
+            <select
+              className="outline-0 border border-slate-300 w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+              name="totalTurnover"
+              id="total-turnover"
+              value={formData.totalTurnover}
+              onChange={handleInputFields}
+            >
+              <option className="">Select Total Turnover</option>
+              <option value="$1M">Below $1M</option>
+              <option value="$1M-$3M">$1M - $3M</option>
+              <option value="$3M-$5M">$3M - $5M</option>
+              <option value="$5M-$10M">$5M - $10M</option>
+              <option value="$ above of $10M">$ Above of $10M</option>
+            </select>
+            {errorMeg?.totalTurnover && (
+              <small className="text-red-600">{errorMeg?.totalTurnover}</small>
+            )}
           </div>
 
           {/* 11. No of staff */}
-          <div className="mt-3">
+          {/* <div className="mt-3">
             <label
               htmlFor="no-of-staff"
               className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -309,10 +364,39 @@ const StepOne = ({ formInfoCarrier }) => {
             {errorMeg?.noOfStaff && (
               <small className="text-red-600">{errorMeg?.noOfStaff}</small>
             )}
+          </div> */}
+
+          <div className="mt-3">
+            <label
+              htmlFor="no-of-staff"
+              className="py-1 text-base text-gray-500 inline-block normal-case"
+            >
+              No of Staff{" "}
+              <span className="text-xl font-bold text-red-500">*</span>
+            </label>
+            <select
+              className="outline-0 border border-slate-300 w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+              name="noOfStaff"
+              id="no-of-staff"
+              value={formData.noOfStaff}
+              onChange={handleInputFields}
+            >
+              <option className="">Select Staff</option>
+              <option value="0-5">0-5</option>
+              <option value="10-15">10-15</option>
+              <option value="15-20">15-20</option>
+              <option value="20-25">20-25</option>
+              <option value="30-35">30-35</option>
+              <option value="35-40">35-40</option>
+              <option value="40+">40+</option>
+            </select>
+            {errorMeg?.noOfStaff && (
+              <small className="text-red-600">{errorMeg?.noOfStaff}</small>
+            )}
           </div>
 
           {/* 12. Trading Currency */}
-          <div className="mt-3">
+          {/* <div className="mt-3">
             <label
               htmlFor="trading-currency"
               className="py-1 text-base text-gray-500 inline-block normal-case"
@@ -328,6 +412,35 @@ const StepOne = ({ formInfoCarrier }) => {
               value={formData.tradingCurrency}
               onChange={handleInputFields}
             />
+            {errorMeg?.tradingCurrency && (
+              <small className="text-red-600">
+                {errorMeg?.tradingCurrency}
+              </small>
+            )}
+          </div> */}
+
+          {/* 12.  Trading Currency */}
+          <div className="mt-3">
+            <label
+              htmlFor="trading-currency"
+              className="py-1 text-base text-gray-500 inline-block normal-case"
+            >
+              Trading Currency{" "}
+              <span className="text-xl font-bold text-red-500">*</span>
+            </label>
+            <select
+              className="outline-0 border border-slate-300 w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
+              name="tradingCurrency"
+              id="trading-currency"
+              value={formData.tradingCurrency}
+              onChange={handleInputFields}
+            >
+              <option className="">Select Currency</option>
+              <option value="UDS">USD</option>
+              <option value="BDT">BDT</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+            </select>
             {errorMeg?.tradingCurrency && (
               <small className="text-red-600">
                 {errorMeg?.tradingCurrency}
@@ -458,21 +571,21 @@ const StepOne = ({ formInfoCarrier }) => {
         <div className="mx-auto w-full text-center mt-12">
           <button
             type="button"
-            disabled={
-              !formData.clientRegisteredName ||
-              !formData.emailAddress ||
-              !formData.address ||
-              !formData.judicialCountry ||
-              !formData.officePhone ||
-              !formData.yearsTrading ||
-              !formData.totalTurnover ||
-              !formData.noOfStaff ||
-              !formData.tradingCurrency ||
-              !formData.adminContactName ||
-              !formData.designation ||
-              !formData.nameCard ||
-              !formData.nationalID
-            }
+            // disabled={
+            //   !formData.clientRegisteredName ||
+            //   !formData.emailAddress ||
+            //   !formData.address ||
+            //   !formData.judicialCountry ||
+            //   !formData.officePhone ||
+            //   !formData.yearsTrading ||
+            //   !formData.totalTurnover ||
+            //   !formData.noOfStaff ||
+            //   !formData.tradingCurrency ||
+            //   !formData.adminContactName ||
+            //   !formData.designation ||
+            //   !formData.nameCard ||
+            //   !formData.nationalID
+            // }
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.clientRegisteredName ||
               !formData.emailAddress ||
