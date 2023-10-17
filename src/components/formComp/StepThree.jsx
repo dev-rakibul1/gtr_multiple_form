@@ -437,7 +437,7 @@ const StepThree = ({ formInfoCarrier }) => {
             </div>
 
             {/* 6 - Approx Look to Book Ratio (100:1) */}
-            <div
+            {/* <div
               className={`mt-3 ${
                 isFlightChecked === false && "text-gray-200 cursor-not-allowed"
               }`}
@@ -462,6 +462,32 @@ const StepThree = ({ formInfoCarrier }) => {
                 }`}
                 onChange={handleInputFields}
               />
+              {errorMeg?.lookToBookRatio && (
+                <small className="text-red-600">
+                  {errorMeg?.lookToBookRatio}
+                </small>
+              )}
+            </div> */}
+
+            <div className="relative mt-3">
+              <label
+                htmlFor="look-to-book-ratio"
+                className="py-1 text-base text-gray-500 inline-block normal-case"
+              >
+                Approx Look to Book Ratio (100:1){" "}
+                <span className="text-xl font-bold text-red-500">*</span>
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  name="lookToBookRatio"
+                  id="look-to-book-ratio"
+                  // value={`${formData.shareholdersRatio}${i + 1}`}
+                  className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 border-slate-300 `}
+                  onChange={handleInputFields}
+                />
+                <span className="ratio-icon">:1</span>
+              </div>
               {errorMeg?.lookToBookRatio && (
                 <small className="text-red-600">
                   {errorMeg?.lookToBookRatio}

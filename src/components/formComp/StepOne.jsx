@@ -221,7 +221,7 @@ const StepOne = ({ formInfoCarrier }) => {
               htmlFor="social-id"
               className="py-1 text-base text-gray-500 inline-block normal-case"
             >
-              Social ID to send push notification
+              Social ID to Send Push Notification
             </label>
             <input
               type="text"
@@ -439,7 +439,14 @@ const StepOne = ({ formInfoCarrier }) => {
               <option value="UDS">USD</option>
               <option value="BDT">BDT</option>
               <option value="EUR">EUR</option>
+              <option value="SGD">SGD</option>
+              <option value="IDR">IDR</option>
+              <option value="PHP">PHP</option>
+              <option value="AED">AED</option>
               <option value="GBP">GBP</option>
+              <option value="INR">INR</option>
+              <option value="AUD">AUD</option>
+              <option value="Other">Other</option>
             </select>
             {errorMeg?.tradingCurrency && (
               <small className="text-red-600">

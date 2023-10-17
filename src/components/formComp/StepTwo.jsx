@@ -42,7 +42,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="finance-contact-name"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Name <span className="text-xl font-bold text-red-500">*</span>
+                Name
               </label>
               <input
                 type="text"
@@ -69,7 +69,6 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
                 Designation{" "}
-                <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -97,7 +96,6 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
                 Email Address{" "}
-                <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -125,7 +123,6 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
                 Contact No{" "}
-                <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
                 type="number"
@@ -167,7 +164,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 htmlFor="reservation-contact-name"
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
-                Name <span className="text-xl font-bold text-red-500">*</span>
+                Name
               </label>
               <input
                 type="text"
@@ -195,7 +192,6 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
                 Designation{" "}
-                <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -223,7 +219,6 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
                 Email Address{" "}
-                <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -251,7 +246,6 @@ const StepTwo = ({ formInfoCarrier }) => {
                 className="py-1 text-base text-gray-500 inline-block normal-case"
               >
                 Contact No{" "}
-                <span className="text-xl font-bold text-red-500">*</span>
               </label>
               <input
                 type="number"
@@ -598,14 +592,6 @@ const StepTwo = ({ formInfoCarrier }) => {
           </button>
           <button
             // disabled={
-            //   !formData.financeContactName ||
-            //   !formData.financeContactDesignation ||
-            //   !formData.financeContactEmail ||
-            //   !formData.financeContactPhone ||
-            //   !formData.reservationContactName ||
-            //   !formData.reservationContactDesignation ||
-            //   !formData.reservationContactEmail ||
-            //   !formData.reservationContactPhone ||
             //   !formData.emergencyContactName ||
             //   !formData.emergencyContactDesignation ||
             //   !formData.emergencyContactEmail ||
@@ -617,14 +603,6 @@ const StepTwo = ({ formInfoCarrier }) => {
             // }
             type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
-              !formData.financeContactName ||
-              !formData.financeContactDesignation ||
-              !formData.financeContactEmail ||
-              !formData.financeContactPhone ||
-              !formData.reservationContactName ||
-              !formData.reservationContactDesignation ||
-              !formData.reservationContactEmail ||
-              !formData.reservationContactPhone ||
               !formData.emergencyContactName ||
               !formData.emergencyContactDesignation ||
               !formData.emergencyContactEmail ||

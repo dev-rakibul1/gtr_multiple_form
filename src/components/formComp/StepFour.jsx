@@ -3,18 +3,20 @@ import React, { useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { getCurrentDateTime } from "../../utiles/dateAndTime";
 import Popup from "../shared/Popup";
+import Fail from "../shared/success/Fail";
 
 const StepFour = ({ formInfoCarrier }) => {
   const { prev, formData, errorMeg } = formInfoCarrier;
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [failMeg, setFailMeg] = useState(false);
   const { time, date } = getCurrentDateTime();
-
-  const openPopup = () => {
-    setPopupOpen(true);
-  };
 
   const closePopup = () => {
     setPopupOpen(false);
+  };
+
+  const closeFail = () => {
+    setFailMeg(false);
   };
 
   // console.log(formData);
@@ -724,6 +726,14 @@ const StepFour = ({ formInfoCarrier }) => {
               : "Empty"
           }
         </li>
+        <li>
+          <strong>Approx Look to Book Ratio (100:1): </strong>
+          ${
+            formData?.lookToBookRatio
+              ? formData?.lookToBookRatio + ":1"
+              : "Empty"
+          }
+        </li>
       </ul>
 
       <ul>
@@ -863,8 +873,10 @@ const StepFour = ({ formInfoCarrier }) => {
       );
 
       console.log(response.data);
+      setPopupOpen(true);
     } catch (error) {
       console.error("Error sending the request:", error);
+      setFailMeg(true);
     }
 
     // console.log("User information : ", userInformation);
@@ -1895,18 +1907,17 @@ const StepFour = ({ formInfoCarrier }) => {
             <span>Prev</span>
           </button>
 
-          <div className="" onClick={openPopup}>
-            <button
-              type="button"
-              className={`gtr-btn global-btn mt-4 mx-2 `}
-              onClick={handleGtrMultipleForm}
-            >
-              <span>Submit</span>
-            </button>
-          </div>
-
-          <Popup isOpen={isPopupOpen} onClose={closePopup} />
+          <button
+            type="button"
+            className={`gtr-btn global-btn mt-4 mx-2 `}
+            onClick={handleGtrMultipleForm}
+          >
+            <span>Submit</span>
+          </button>
         </div>
+
+        <Popup isOpen={isPopupOpen} onClose={closePopup} />
+        <Fail isOpen={failMeg} onClose={closeFail} />
       </div>
     </div>
   );
