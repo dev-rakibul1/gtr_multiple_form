@@ -591,16 +591,16 @@ const StepTwo = ({ formInfoCarrier }) => {
             <span>Prev</span>
           </button>
           <button
-            // disabled={
-            //   !formData.emergencyContactName ||
-            //   !formData.emergencyContactDesignation ||
-            //   !formData.emergencyContactEmail ||
-            //   !formData.emergencyContactPhone ||
-            //   !formData.shareholderCount ||
-            //   !formData.registrationDocs ||
-            //   !formData.taxRegistrationNo ||
-            //   !formData.travelAgentLicense
-            // }
+            disabled={
+              !formData.emergencyContactName ||
+              !formData.emergencyContactDesignation ||
+              !formData.emergencyContactEmail ||
+              !formData.emergencyContactPhone ||
+              !formData.shareholderCount ||
+              !formData.registrationDocs ||
+              !formData.taxRegistrationNo ||
+              !formData.travelAgentLicense
+            }
             type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.emergencyContactName ||

@@ -578,21 +578,21 @@ const StepOne = ({ formInfoCarrier }) => {
         <div className="mx-auto w-full text-center mt-12">
           <button
             type="button"
-            // disabled={
-            //   !formData.clientRegisteredName ||
-            //   !formData.emailAddress ||
-            //   !formData.address ||
-            //   !formData.judicialCountry ||
-            //   !formData.officePhone ||
-            //   !formData.yearsTrading ||
-            //   !formData.totalTurnover ||
-            //   !formData.noOfStaff ||
-            //   !formData.tradingCurrency ||
-            //   !formData.adminContactName ||
-            //   !formData.designation ||
-            //   !formData.nameCard ||
-            //   !formData.nationalID
-            // }
+            disabled={
+              !formData.clientRegisteredName ||
+              !formData.emailAddress ||
+              !formData.address ||
+              !formData.judicialCountry ||
+              !formData.officePhone ||
+              !formData.yearsTrading ||
+              !formData.totalTurnover ||
+              !formData.noOfStaff ||
+              !formData.tradingCurrency ||
+              !formData.adminContactName ||
+              !formData.designation ||
+              !formData.nameCard ||
+              !formData.nationalID
+            }
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.clientRegisteredName ||
               !formData.emailAddress ||
