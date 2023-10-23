@@ -173,8 +173,6 @@ const GtrForm = () => {
     }
   });
 
-  console.log(ratioSum);
-
   const handleNextButton = () => {
     // Form step 1
     if (currentStep === 1) {

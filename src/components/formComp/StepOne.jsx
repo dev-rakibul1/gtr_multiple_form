@@ -8,11 +8,8 @@ const websiteUrl = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}(\S*)$/;
 const StepOne = ({ formInfoCarrier }) => {
   const { next, formData, handleInputFields, clientTradeName, errorMeg } =
     formInfoCarrier;
-  console.log(formData.clientTradeName);
-  console.log(formData);
-  const [showToast, setShowToast] = useState(false);
 
-  console.log(clientTradeName);
+  const [showToast, setShowToast] = useState(false);
 
   return (
     <div className="pb-16">

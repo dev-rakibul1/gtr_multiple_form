@@ -19,9 +19,6 @@ const StepFour = ({ formInfoCarrier }) => {
     setFailMeg(false);
   };
 
-  // console.log(formData);
-  // console.log(errorMeg);
-
   const userInformation = {
     clientRegisteredName: formData?.clientRegisteredName,
     clientTradeName: formData?.clientTradeName,
@@ -878,12 +875,7 @@ const StepFour = ({ formInfoCarrier }) => {
       console.error("Error sending the request:", error);
       setFailMeg(true);
     }
-
-    // console.log("User information : ", userInformation);
   };
-
-  console.log("Images_1", formData?.travelAgentLicense);
-  console.log("Images_2", formData?.registrationDocs);
 
   return (
     <div className="pb-16 ">
