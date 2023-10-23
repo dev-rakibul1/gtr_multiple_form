@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import Toast from "../shared/success/Toast";
 const emailRex =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const phoneRex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
 const StepTwo = ({ formInfoCarrier }) => {
   const { next, prev, formData, handleInputFields, errorMeg } = formInfoCarrier;
-
-  console.log(formData);
-  console.log(errorMeg);
+  const [showToast, setShowToast] = useState(false);
 
   let testData = [];
   let i = 0;
@@ -585,24 +583,14 @@ const StepTwo = ({ formInfoCarrier }) => {
         <div className="mx-auto w-full text-center mt-12">
           <button
             type="button"
-            className="gtr-btn global-btn mt-4 mx-2"
+            className="gtr-btn global-btn mt-4 mx-2 gtr-btn-bg"
             onClick={prev}
           >
             <span>Prev</span>
           </button>
           <button
-            disabled={
-              !formData.emergencyContactName ||
-              !formData.emergencyContactDesignation ||
-              !formData.emergencyContactEmail ||
-              !formData.emergencyContactPhone ||
-              !formData.shareholderCount ||
-              !formData.registrationDocs ||
-              !formData.taxRegistrationNo ||
-              !formData.travelAgentLicense
-            }
             type="button"
-            className={`gtr-btn global-btn mt-4 mx-2 ${
+            className={`gtr-btn global-btn mt-4 mx-2 gtr-btn-bg ${
               !formData.emergencyContactName ||
               !formData.emergencyContactDesignation ||
               !formData.emergencyContactEmail ||
@@ -611,13 +599,28 @@ const StepTwo = ({ formInfoCarrier }) => {
               !formData.registrationDocs ||
               !formData.taxRegistrationNo ||
               !formData.travelAgentLicense
-                ? "bg-gray-400 cursor-not-allowed text-gray-600 opacity-[.7]"
-                : ""
+                ? "gtr-btn-bg-2 text-gray-600"
+                : "gtr-btn-bg"
             }`}
-            onClick={next}
+            onClick={() => {
+              !formData.emergencyContactName ||
+              !formData.emergencyContactDesignation ||
+              !formData.emergencyContactEmail ||
+              !formData.emergencyContactPhone ||
+              !formData.shareholderCount ||
+              !formData.registrationDocs ||
+              !formData.taxRegistrationNo ||
+              !formData.travelAgentLicense
+                ? setShowToast(true)
+                : next();
+            }}
           >
             <span>Next</span>
           </button>
+
+          {showToast && (
+            <Toast showToast={showToast} setShowToast={setShowToast} />
+          )}
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
-import React from "react";
-const approx_pattern = /^\d+:1$/;
+import React, { useState } from "react";
+import Toast from "../shared/success/Toast";
+// const approx_pattern = /^\d+:1$/;
 
 const StepThree = ({ formInfoCarrier }) => {
+  const [showToast, setShowToast] = useState(false);
+
   const {
     next,
     prev,
@@ -10,7 +13,7 @@ const StepThree = ({ formInfoCarrier }) => {
     errorMeg,
     handleCheckboxChange1,
     handleCheckboxChange2,
-    handleCheckboxChange3,
+    // handleCheckboxChange3,
     isHotelChecked,
     handleHotelRadioChange,
     isFlightChecked,
@@ -575,23 +578,30 @@ const StepThree = ({ formInfoCarrier }) => {
         <div className="mx-auto w-full text-center mt-12">
           <button
             type="button"
-            className="gtr-btn global-btn mt-4 mx-2"
+            className="gtr-btn global-btn mt-4 mx-2 gtr-btn-bg"
             onClick={prev}
           >
             <span>Prev</span>
           </button>
           <button
-            disabled={!formData.gdprConsent || !formData.privacyPolicyConsent}
             type="button"
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.gdprConsent || !formData.privacyPolicyConsent
-                ? "bg-gray-400 cursor-not-allowed text-gray-600 opacity-[.7]"
-                : ""
+                ? " text-gray-600 gtr-btn-bg-2"
+                : "gtr-btn-bg"
             }`}
-            onClick={next}
+            onClick={() => {
+              !formData.gdprConsent || !formData.privacyPolicyConsent
+                ? setShowToast(true)
+                : next();
+            }}
           >
             <span>Next</span>
           </button>
+
+          {showToast && (
+            <Toast showToast={showToast} setShowToast={setShowToast} />
+          )}
         </div>
       </div>
     </div>

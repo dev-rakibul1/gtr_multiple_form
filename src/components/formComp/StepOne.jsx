@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import Toast from "../shared/success/Toast";
 const emailRex =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const phoneRex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
 const websiteUrl = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}(\S*)$/;
 
 const StepOne = ({ formInfoCarrier }) => {
@@ -9,12 +10,9 @@ const StepOne = ({ formInfoCarrier }) => {
     formInfoCarrier;
   console.log(formData.clientTradeName);
   console.log(formData);
+  const [showToast, setShowToast] = useState(false);
 
   console.log(clientTradeName);
-
-  // if (formData === "") {
-  //   setClientRegisteredName("Fields is required!");
-  // }
 
   return (
     <div className="pb-16">
@@ -234,30 +232,6 @@ const StepOne = ({ formInfoCarrier }) => {
           </div>
 
           {/* 9. Number of years client has been trading */}
-          {/* <div className="mt-3">
-            <label
-              htmlFor="years-trading"
-              className="py-1 text-base text-gray-500 inline-block normal-case"
-            >
-              Number of Years Client has been Trading{" "}
-              <span className="text-xl font-bold text-red-500">*</span>
-            </label>
-            <input
-              type="number"
-              name="yearsTrading"
-              id="years-trading"
-              value={formData.yearsTrading}
-              className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                formData.yearsTrading < 0
-                  ? "border-red-600 "
-                  : " border-slate-300 "
-              }`}
-              onChange={handleInputFields}
-            />
-            {errorMeg?.yearsTrading && (
-              <small className="text-red-600">{errorMeg?.yearsTrading}</small>
-            )}
-          </div> */}
 
           <div className="mt-3">
             <label
@@ -288,30 +262,6 @@ const StepOne = ({ formInfoCarrier }) => {
           </div>
 
           {/* 10. Last year Total Turnover */}
-          {/* <div className="mt-3">
-            <label
-              htmlFor="total-turnover"
-              className="py-1 text-base text-gray-500 inline-block normal-case"
-            >
-              Last Year Total Turnover{" "}
-              <span className="text-xl font-bold text-red-500">*</span>
-            </label>
-            <input
-              type="number"
-              name="totalTurnover"
-              id="total-turnover"
-              value={formData.totalTurnover}
-              className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                formData.totalTurnover < 0
-                  ? "border-red-600 "
-                  : " border-slate-300 "
-              }`}
-              onChange={handleInputFields}
-            />
-            {errorMeg?.totalTurnover && (
-              <small className="text-red-600">{errorMeg?.totalTurnover}</small>
-            )}
-          </div> */}
 
           <div className="mt-3">
             <label
@@ -341,30 +291,6 @@ const StepOne = ({ formInfoCarrier }) => {
           </div>
 
           {/* 11. No of staff */}
-          {/* <div className="mt-3">
-            <label
-              htmlFor="no-of-staff"
-              className="py-1 text-base text-gray-500 inline-block normal-case"
-            >
-              No of Staff{" "}
-              <span className="text-xl font-bold text-red-500">*</span>
-            </label>
-            <input
-              type="number"
-              name="noOfStaff"
-              id="no-of-staff"
-              value={formData.noOfStaff}
-              className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                formData.noOfStaff < 0
-                  ? "border-red-600 "
-                  : " border-slate-300 "
-              }`}
-              onChange={handleInputFields}
-            />
-            {errorMeg?.noOfStaff && (
-              <small className="text-red-600">{errorMeg?.noOfStaff}</small>
-            )}
-          </div> */}
 
           <div className="mt-3">
             <label
@@ -396,28 +322,6 @@ const StepOne = ({ formInfoCarrier }) => {
           </div>
 
           {/* 12. Trading Currency */}
-          {/* <div className="mt-3">
-            <label
-              htmlFor="trading-currency"
-              className="py-1 text-base text-gray-500 inline-block normal-case"
-            >
-              Trading Currency{" "}
-              <span className="text-xl font-bold text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="tradingCurrency"
-              id="trading-currency"
-              className="outline-0 border border-slate-300 w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300"
-              value={formData.tradingCurrency}
-              onChange={handleInputFields}
-            />
-            {errorMeg?.tradingCurrency && (
-              <small className="text-red-600">
-                {errorMeg?.tradingCurrency}
-              </small>
-            )}
-          </div> */}
 
           {/* 12.  Trading Currency */}
           <div className="mt-3">
@@ -578,21 +482,6 @@ const StepOne = ({ formInfoCarrier }) => {
         <div className="mx-auto w-full text-center mt-12">
           <button
             type="button"
-            disabled={
-              !formData.clientRegisteredName ||
-              !formData.emailAddress ||
-              !formData.address ||
-              !formData.judicialCountry ||
-              !formData.officePhone ||
-              !formData.yearsTrading ||
-              !formData.totalTurnover ||
-              !formData.noOfStaff ||
-              !formData.tradingCurrency ||
-              !formData.adminContactName ||
-              !formData.designation ||
-              !formData.nameCard ||
-              !formData.nationalID
-            }
             className={`gtr-btn global-btn mt-4 mx-2 ${
               !formData.clientRegisteredName ||
               !formData.emailAddress ||
@@ -607,13 +496,33 @@ const StepOne = ({ formInfoCarrier }) => {
               !formData.designation ||
               !formData.nameCard ||
               !formData.nationalID
-                ? "bg-gray-400 cursor-not-allowed text-gray-600 opacity-[.7]"
-                : ""
+                ? "gtr-btn-bg-2 text-gray-600"
+                : "gtr-btn-bg"
             }`}
-            onClick={next}
+            onClick={() => {
+              !formData.clientRegisteredName ||
+              !formData.emailAddress ||
+              !formData.address ||
+              !formData.judicialCountry ||
+              !formData.officePhone ||
+              !formData.yearsTrading ||
+              !formData.totalTurnover ||
+              !formData.noOfStaff ||
+              !formData.tradingCurrency ||
+              !formData.adminContactName ||
+              !formData.designation ||
+              !formData.nameCard ||
+              !formData.nationalID
+                ? setShowToast(true)
+                : next();
+            }}
           >
             <span>Next</span>
           </button>
+
+          {showToast && (
+            <Toast showToast={showToast} setShowToast={setShowToast} />
+          )}
         </div>
       </div>
     </div>

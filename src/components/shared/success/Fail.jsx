@@ -1,8 +1,11 @@
 import React from "react";
 import { RxCross1 } from "react-icons/rx";
 
-function Fail({ isOpen, onClose }) {
-  if (!isOpen) return null;
+function Fail() {
+  const handleGoToHome = () => {
+    window.location.href = "/";
+    window.location.reload();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
@@ -29,9 +32,9 @@ function Fail({ isOpen, onClose }) {
 
               <h4 className="font-light mt-4">Fail submitted!!!</h4>
               <button
+                onClick={handleGoToHome}
                 className="mt-7 text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={onClose}
               >
                 Close
               </button>

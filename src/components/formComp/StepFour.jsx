@@ -1901,7 +1901,7 @@ const StepFour = ({ formInfoCarrier }) => {
         <div className="mx-auto w-full text-center mt-12 flex justify-center items-center">
           <button
             type="button"
-            className="gtr-btn global-btn mt-4 mx-2"
+            className="gtr-btn global-btn mt-4 mx-2 gtr-btn-bg"
             onClick={prev}
           >
             <span>Prev</span>
@@ -1909,7 +1909,7 @@ const StepFour = ({ formInfoCarrier }) => {
 
           <button
             type="button"
-            className={`gtr-btn global-btn mt-4 mx-2 `}
+            className={`gtr-btn global-btn mt-4 mx-2 gtr-btn-bg`}
             onClick={handleGtrMultipleForm}
           >
             <span>Submit</span>
