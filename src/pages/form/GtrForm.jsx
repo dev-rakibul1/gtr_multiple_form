@@ -12,6 +12,11 @@ const GtrForm = () => {
   const [currentStep, setCurrentStep] = useState(totalForm[0]);
   const [isHotelChecked, setIsHotelChecked] = useState(true);
   const [isFlightChecked, setIsFlightChecked] = useState(true);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [file1, setFile1] = useState(null);
+  const [file2, setFile2] = useState(null);
+  const [file3, setFile3] = useState(null);
+  const [file4, setFile4] = useState(null);
 
   // hotel content checked
   const handleHotelRadioChange = (event) => {
@@ -287,27 +292,27 @@ const GtrForm = () => {
       }
 
       // image validation
-      if (formData.nameCard === "") {
-        newErrorMeg.nameCard = "Name card is required!";
+      if (file1 === "") {
+        newErrorMeg.file1 = "Name card is required!";
       } else if (
-        !formData.nameCard.toLowerCase().endsWith(".jpg") &&
-        !formData.nameCard.toLowerCase().endsWith(".png") &&
-        !formData.nameCard.toLowerCase().endsWith(".pdf") &&
-        !formData.nameCard.toLowerCase().endsWith(".jpeg")
+        !file1?.name.toLowerCase().endsWith(".jpg") &&
+        !file1?.name.toLowerCase().endsWith(".png") &&
+        !file1?.name.toLowerCase().endsWith(".pdf") &&
+        !file1?.name.toLowerCase().endsWith(".jpeg")
       ) {
-        newErrorMeg.nameCard =
+        newErrorMeg.file1 =
           "Please select a valid image file (jpg, jpeg, png or pdf).";
       }
       // National id
-      if (formData.nationalID === "") {
-        newErrorMeg.nationalID = "Name card is required!";
+      if (file2 === "") {
+        newErrorMeg.file2 = "Name card is required!";
       } else if (
-        !formData.nameCard.toLowerCase().endsWith(".jpg") &&
-        !formData.nameCard.toLowerCase().endsWith(".png") &&
-        !formData.nameCard.toLowerCase().endsWith(".pdf") &&
-        !formData.nameCard.toLowerCase().endsWith(".jpeg")
+        !file2?.name.toLowerCase().endsWith(".jpg") &&
+        !file2?.name.toLowerCase().endsWith(".png") &&
+        !file2?.name.toLowerCase().endsWith(".pdf") &&
+        !file2?.name.toLowerCase().endsWith(".jpeg")
       ) {
-        newErrorMeg.nationalID =
+        newErrorMeg.file2 =
           "Please select a valid image file (jpg, jpeg, png or pdf).";
       }
 
@@ -317,6 +322,7 @@ const GtrForm = () => {
         return;
       }
     }
+    // console.log(errorMeg);
 
     // Form step 2
     if (currentStep === 2) {
@@ -450,16 +456,17 @@ const GtrForm = () => {
 
       // -------------------COMPLINANCE --------------------
       // registration Docs
-      if (formData.registrationDocs === "") {
-        newErrorMeg.registrationDocs = "Registration docs is required!";
+      // image validation
+      if (file3 === "") {
+        newErrorMeg.file3 = "Name card is required!";
       } else if (
-        !formData.registrationDocs.toLowerCase().endsWith(".jpg") &&
-        !formData.registrationDocs.toLowerCase().endsWith(".png") &&
-        !formData.registrationDocs.toLowerCase().endsWith(".pdf") &&
-        !formData.registrationDocs.toLowerCase().endsWith(".jpeg")
+        !file3?.name.toLowerCase().endsWith(".jpg") &&
+        !file3?.name.toLowerCase().endsWith(".png") &&
+        !file3?.name.toLowerCase().endsWith(".pdf") &&
+        !file3?.name.toLowerCase().endsWith(".jpeg")
       ) {
-        newErrorMeg.registrationDocs =
-          "Please select a valid image file (jpg, jpeg, png, or pdf).";
+        newErrorMeg.file3 =
+          "Please select a valid image file (jpg, jpeg, png or pdf).";
       }
 
       // Tax / VAT Registration
@@ -467,16 +474,17 @@ const GtrForm = () => {
         newErrorMeg.taxRegistrationNo = "TAX/VAT is required!";
       }
 
-      // registration Docs
-      if (formData.travelAgentLicense === "") {
-        newErrorMeg.travelAgentLicense = "Registration docs is required!";
+      // // registration Docs
+      // image validation
+      if (file4 === "") {
+        newErrorMeg.file4 = "Name card is required!";
       } else if (
-        !formData.travelAgentLicense.toLowerCase().endsWith(".jpg") &&
-        !formData.travelAgentLicense.toLowerCase().endsWith(".png") &&
-        !formData.travelAgentLicense.toLowerCase().endsWith(".pdf") &&
-        !formData.travelAgentLicense.toLowerCase().endsWith(".jpeg")
+        !file4?.name.toLowerCase().endsWith(".jpg") &&
+        !file4?.name.toLowerCase().endsWith(".png") &&
+        !file4?.name.toLowerCase().endsWith(".pdf") &&
+        !file4?.name.toLowerCase().endsWith(".jpeg")
       ) {
-        newErrorMeg.travelAgentLicense =
+        newErrorMeg.file4 =
           "Please select a valid image file (jpg, jpeg, png or pdf).";
       }
 
@@ -592,6 +600,28 @@ const GtrForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
+  // console.log(file1.name);
+
+  // ------------------FILE SELECTED---------------------
+
+  const handleFileChange = (e, setFile) => {
+    const file = e.target.files[0];
+    setFile(file);
+  };
+
+  const handleBtnSubmit = () => {
+    const imageCollectionObject = {
+      image1: file1,
+      image2: file2,
+      image3: file3,
+      image4: file4,
+    };
+    // console.log(imageCollectionObject);
+    setSelectedFiles(imageCollectionObject);
+  };
+
+  console.log("Outside Selected Files:", selectedFiles);
+
   const formInfoCarrier = {
     next: handleNextButton,
     prev: handlePrevButton,
@@ -606,6 +636,19 @@ const GtrForm = () => {
     isHotelChecked: isHotelChecked,
     handleFlightRadioChange: handleFlightRadioChange,
     isFlightChecked: isFlightChecked,
+
+    // image or file information
+    handleFileChange: handleFileChange,
+    handleBtnSubmit: handleBtnSubmit,
+    setFile1: setFile1,
+    setFile2: setFile2,
+    setFile3: setFile3,
+    setFile4: setFile4,
+    file1: file1,
+    file2: file2,
+    file3: file3,
+    file4: file4,
+    selectedFiles: selectedFiles,
   };
 
   return (

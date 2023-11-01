@@ -6,10 +6,218 @@ const emailRex =
 const websiteUrl = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}(\S*)$/;
 
 const StepOne = ({ formInfoCarrier }) => {
-  const { next, formData, handleInputFields, clientTradeName, errorMeg } =
-    formInfoCarrier;
+  const {
+    next,
+    formData,
+    handleInputFields,
+    clientTradeName,
+    errorMeg,
+    handleBtnSubmit,
+    handleFileChange,
+    setFile1,
+    setFile2,
+    file1,
+    file2,
+  } = formInfoCarrier;
 
   const [showToast, setShowToast] = useState(false);
+
+  const countryArray = [
+    { name: "Afghanistan" },
+    { name: "Albania" },
+    { name: "Algeria" },
+    { name: "Andorra" },
+    { name: "Angola" },
+    { name: "Antigua and Barbuda" },
+    { name: "Argentina" },
+    { name: "Armenia" },
+    { name: "Australia" },
+    { name: "Austria" },
+    { name: "Azerbaijan" },
+    { name: "Bahamas" },
+    { name: "Bahrain" },
+    { name: "Bangladesh" },
+    { name: "Barbados" },
+    { name: "Belarus" },
+    { name: "Belgium" },
+    { name: "Belize" },
+    { name: "Benin" },
+    { name: "Bhutan" },
+    { name: "Bolivia" },
+    { name: "Bosnia and Herzegovina" },
+    { name: "Botswana" },
+    { name: "Brazil" },
+    { name: "Brunei" },
+    { name: "Bulgaria" },
+    { name: "Burkina Faso" },
+    { name: "Burundi" },
+    { name: "Cabo Verde" },
+    { name: "Cambodia" },
+    { name: "Cameroon" },
+    { name: "Canada" },
+    { name: "Central African Republic" },
+    { name: "Chad" },
+    { name: "Chile" },
+    { name: "China" },
+    { name: "Colombia" },
+    { name: "Comoros" },
+    { name: "Congo" },
+    { name: "Costa Rica" },
+    { name: "Croatia" },
+    { name: "Cuba" },
+    { name: "Cyprus" },
+    { name: "Czech Republic" },
+    { name: "Denmark" },
+    { name: "Djibouti" },
+    { name: "Dominica" },
+    { name: "Dominican Republic" },
+    { name: "East Timor" },
+    { name: "Ecuador" },
+    { name: "Egypt" },
+    { name: "El Salvador" },
+    { name: "Equatorial Guinea" },
+    { name: "Eritrea" },
+    { name: "Estonia" },
+    { name: "Eswatini" },
+    { name: "Ethiopia" },
+    { name: "Fiji" },
+    { name: "Finland" },
+    { name: "France" },
+    { name: "Gabon" },
+    { name: "Gambia" },
+    { name: "Georgia" },
+    { name: "Germany" },
+    { name: "Ghana" },
+    { name: "Greece" },
+    { name: "Grenada" },
+    { name: "Guatemala" },
+    { name: "Guinea" },
+    { name: "Guinea-Bissau" },
+    { name: "Guyana" },
+    { name: "Haiti" },
+    { name: "Honduras" },
+    { name: "Hungary" },
+    { name: "Iceland" },
+    { name: "India" },
+    { name: "Indonesia" },
+    { name: "Iran" },
+    { name: "Iraq" },
+    { name: "Ireland" },
+    { name: "Israel" },
+    { name: "Italy" },
+    { name: "Ivory Coast" },
+    { name: "Jamaica" },
+    { name: "Japan" },
+    { name: "Jordan" },
+    { name: "Kazakhstan" },
+    { name: "Kenya" },
+    { name: "Kiribati" },
+    { name: "Kosovo" },
+    { name: "Kuwait" },
+    { name: "Kyrgyzstan" },
+    { name: "Laos" },
+    { name: "Latvia" },
+    { name: "Lebanon" },
+    { name: "Lesotho" },
+    { name: "Liberia" },
+    { name: "Libya" },
+    { name: "Liechtenstein" },
+    { name: "Lithuania" },
+    { name: "Luxembourg" },
+    { name: "Madagascar" },
+    { name: "Malawi" },
+    { name: "Malaysia" },
+    { name: "Maldives" },
+    { name: "Mali" },
+    { name: "Malta" },
+    { name: "Marshall Islands" },
+    { name: "Mauritania" },
+    { name: "Mauritius" },
+    { name: "Mexico" },
+    { name: "Micronesia" },
+    { name: "Moldova" },
+    { name: "Monaco" },
+    { name: "Mongolia" },
+    { name: "Montenegro" },
+    { name: "Morocco" },
+    { name: "Mozambique" },
+    { name: "Myanmar" },
+    { name: "Namibia" },
+    { name: "Nauru" },
+    { name: "Nepal" },
+    { name: "Netherlands" },
+    { name: "New Zealand" },
+    { name: "Nicaragua" },
+    { name: "Niger" },
+    { name: "Nigeria" },
+    { name: "North Macedonia" },
+    { name: "Norway" },
+    { name: "Oman" },
+    { name: "Pakistan" },
+    { name: "Palau" },
+    { name: "Panama" },
+    { name: "Papua New Guinea" },
+    { name: "Paraguay" },
+    { name: "Peru" },
+    { name: "Philippines" },
+    { name: "Poland" },
+    { name: "Portugal" },
+    { name: "Qatar" },
+    { name: "Romania" },
+    { name: "Russia" },
+    { name: "Rwanda" },
+    { name: "Saint Kitts and Nevis" },
+    { name: "Saint Lucia" },
+    { name: "Saint Vincent and the Grenadines" },
+    { name: "Samoa" },
+    { name: "San Marino" },
+    { name: "Sao Tome and Principe" },
+    { name: "Saudi Arabia" },
+    { name: "Senegal" },
+    { name: "Serbia" },
+    { name: "Seychelles" },
+    { name: "Sierra Leone" },
+    { name: "Singapore" },
+    { name: "Slovakia" },
+    { name: "Slovenia" },
+    { name: "Solomon Islands" },
+    { name: "Somalia" },
+    { name: "South Africa" },
+    { name: "South Korea" },
+    { name: "South Sudan" },
+    { name: "Spain" },
+    { name: "Sri Lanka" },
+    { name: "Sudan" },
+    { name: "Suriname" },
+    { name: "Sweden" },
+    { name: "Switzerland" },
+    { name: "Syria" },
+    { name: "Taiwan" },
+    { name: "Tajikistan" },
+    { name: "Tanzania" },
+    { name: "Thailand" },
+    { name: "Togo" },
+    { name: "Tonga" },
+    { name: "Trinidad and Tobago" },
+    { name: "Tunisia" },
+    { name: "Turkey" },
+    { name: "Turkmenistan" },
+    { name: "Tuvalu" },
+    { name: "Uganda" },
+    { name: "Ukraine" },
+    { name: "United Arab Emirates" },
+    { name: "United Kingdom" },
+    { name: "United States" },
+    { name: "Uruguay" },
+    { name: "Uzbekistan" },
+    { name: "Vanuatu" },
+    { name: "Vatican City" },
+    { name: "Venezuela" },
+    { name: "Vietnam" },
+    { name: "Yemen" },
+    { name: "Zambia" },
+    { name: "Zimbabwe" },
+  ];
 
   return (
     <div className="pb-16">
@@ -144,13 +352,11 @@ const StepOne = ({ formInfoCarrier }) => {
               onChange={handleInputFields}
             >
               <option className="">Select country</option>
-              <option value="bangladesh">Bangladesh</option>
-              <option value="pakistan">pakistan</option>
-              <option value="india">India</option>
-              <option value="australia">australia</option>
-              <option value="canada">Canada</option>
-              <option value="china">China</option>
-              <option value="usa">Usa</option>
+              {countryArray?.map((country, i) => (
+                <option value={country?.name.toLocaleLowerCase()} key={i + 1}>
+                  {country?.name}
+                </option>
+              ))}
             </select>
             {errorMeg?.judicialCountry && (
               <small className="text-red-600">
@@ -249,7 +455,7 @@ const StepOne = ({ formInfoCarrier }) => {
               <option value="0-5">0-5</option>
               <option value="5-10">5-10</option>
               <option value="10-15">10-15</option>
-              <option value="10-15">15-20</option>
+              <option value="15-20">15-20</option>
               <option value="20-25">20-25</option>
               <option value="25+">25+</option>
             </select>
@@ -276,11 +482,11 @@ const StepOne = ({ formInfoCarrier }) => {
               onChange={handleInputFields}
             >
               <option className="">Select Total Turnover</option>
-              <option value="$1M">Below $1M</option>
+              <option value="below $1m">Below $1M</option>
               <option value="$1M-$3M">$1M - $3M</option>
               <option value="$3M-$5M">$3M - $5M</option>
               <option value="$5M-$10M">$5M - $10M</option>
-              <option value="$ above of $10M">$ Above of $10M</option>
+              <option value="$ Above of $10m">$ Above of $10M</option>
             </select>
             {errorMeg?.totalTurnover && (
               <small className="text-red-600">{errorMeg?.totalTurnover}</small>
@@ -306,9 +512,11 @@ const StepOne = ({ formInfoCarrier }) => {
             >
               <option className="">Select Staff</option>
               <option value="0-5">0-5</option>
+              <option value="5-10">5-10</option>
               <option value="10-15">10-15</option>
               <option value="15-20">15-20</option>
               <option value="20-25">20-25</option>
+              <option value="25-30">25-30</option>
               <option value="30-35">30-35</option>
               <option value="35-40">35-40</option>
               <option value="40+">40+</option>
@@ -433,15 +641,11 @@ const StepOne = ({ formInfoCarrier }) => {
                 name="nameCard"
                 id="name-card"
                 // value={formData?.nameCard}
-                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  formData.nameCard && formData.nameCard === ""
-                    ? "border-red-600 "
-                    : " border-slate-300 "
-                }`}
-                onChange={handleInputFields}
+                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300`}
+                onChange={(e) => handleFileChange(e, setFile1)}
               />
-              {errorMeg?.nameCard && (
-                <small className="text-red-600">{errorMeg?.nameCard}</small>
+              {errorMeg?.file1 && (
+                <small className="text-red-600">{errorMeg?.file1}</small>
               )}
             </div>
 
@@ -461,15 +665,11 @@ const StepOne = ({ formInfoCarrier }) => {
                 name="nationalID"
                 id="national-id"
                 // value={formData.nationalID}
-                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  formData.nationalID && formData.nationalID === ""
-                    ? "border-red-600 "
-                    : " border-slate-300 "
-                }`}
-                onChange={handleInputFields}
+                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 `}
+                onChange={(e) => handleFileChange(e, setFile2)}
               />
-              {errorMeg?.nationalID && (
-                <small className="text-red-600">{errorMeg?.nationalID}</small>
+              {errorMeg?.file2 && (
+                <small className="text-red-600">{errorMeg?.file2}</small>
               )}
             </div>
           </div>
@@ -490,13 +690,14 @@ const StepOne = ({ formInfoCarrier }) => {
               !formData.noOfStaff ||
               !formData.tradingCurrency ||
               !formData.adminContactName ||
-              !formData.designation ||
-              !formData.nameCard ||
-              !formData.nationalID
-                ? "gtr-btn-bg-2 text-gray-600"
+              !formData.designation
+                ? // !formData.nameCard ||
+                  // !formData.nationalID
+                  "gtr-btn-bg-2 text-gray-600"
                 : "gtr-btn-bg"
             }`}
             onClick={() => {
+              handleBtnSubmit();
               !formData.clientRegisteredName ||
               !formData.emailAddress ||
               !formData.address ||
@@ -507,10 +708,10 @@ const StepOne = ({ formInfoCarrier }) => {
               !formData.noOfStaff ||
               !formData.tradingCurrency ||
               !formData.adminContactName ||
-              !formData.designation ||
-              !formData.nameCard ||
-              !formData.nationalID
-                ? setShowToast(true)
+              !formData.designation
+                ? // !formData.nameCard ||
+                  // !formData.nationalID
+                  setShowToast(true)
                 : next();
             }}
           >

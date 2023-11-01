@@ -1,15 +1,18 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { getCurrentDateTime } from "../../utiles/dateAndTime";
 import Popup from "../shared/Popup";
 import Fail from "../shared/success/Fail";
 
 const StepFour = ({ formInfoCarrier }) => {
-  const { prev, formData, errorMeg } = formInfoCarrier;
+  const { prev, formData, errorMeg, selectedFiles } = formInfoCarrier;
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [failMeg, setFailMeg] = useState(false);
   const { time, date } = getCurrentDateTime();
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const imgBBHostApiURL = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+  const [imageUrls, setImageUrls] = useState([]);
 
   const closePopup = () => {
     setPopupOpen(false);
@@ -19,23 +22,106 @@ const StepFour = ({ formInfoCarrier }) => {
     setFailMeg(false);
   };
 
+  const judicialCountryLowerCase = formData?.judicialCountry?.toLowerCase();
+  const yearsTradingLowerCase = formData?.yearsTrading?.toLowerCase();
+  const totalTurnoverLowerCase = formData?.totalTurnover?.toLowerCase();
+  const noOfStaffLowerCase = formData?.noOfStaff?.toLowerCase();
+  const tradingCurrencyLowerCase = formData?.tradingCurrency?.toLowerCase();
+
+  // handle image
+  const fileUrl1 = selectedFiles.image1;
+  const fileUrl2 = selectedFiles.image2;
+  const fileUrl3 = selectedFiles.image3;
+  const fileUrl4 = selectedFiles.image4;
+
+  // const imagesFormData = new FormData();
+  // const images1 = fileUrl1;
+  // console.log("images", images1);
+  // imagesFormData.append("image", images1);
+
+  // fetch(imgBBHostApiURL, {
+  //   method: "POST",
+  //   body: imagesFormData,
+  // })
+  //   .then((res) => res.json())
+  //   .then((imgData) => {
+
+  //     console.log("Image Data____", imgData);
+  //   });
+
+  useEffect(() => {
+    const uploadImages = async () => {
+      try {
+        const imagePromises = [];
+
+        if (selectedFiles.image1) {
+          imagePromises.push(uploadImage(selectedFiles.image1));
+        }
+        if (selectedFiles.image2) {
+          imagePromises.push(uploadImage(selectedFiles.image2));
+        }
+        if (selectedFiles.image3) {
+          imagePromises.push(uploadImage(selectedFiles.image3));
+        }
+        if (selectedFiles.image4) {
+          imagePromises.push(uploadImage(selectedFiles.image4));
+        }
+
+        const uploadedImages = await Promise.all(imagePromises);
+        setImageUrls(uploadedImages);
+      } catch (error) {
+        console.error("Error uploading images:", error);
+        setFailMeg(true);
+      }
+    };
+
+    if (
+      selectedFiles.image1 ||
+      selectedFiles.image2 ||
+      selectedFiles.image3 ||
+      selectedFiles.image4
+    ) {
+      uploadImages();
+    }
+  }, [selectedFiles]);
+
+  const uploadImage = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("key", apiKey); // Replace with your ImgBB API key
+      formData.append("image", file);
+
+      const response = await axios.post(imgBBHostApiURL, formData);
+      return response.data.data.url;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error;
+    }
+  };
+
+  // File collection
+  const nameCard = imageUrls[0] || "";
+  const nationalID = imageUrls[1] || "";
+  const registrationDocs = imageUrls[2] || "";
+  const travelAgentLicense = imageUrls[3] || "";
+
   const userInformation = {
     clientRegisteredName: formData?.clientRegisteredName,
     clientTradeName: formData?.clientTradeName,
     emailAddress: formData?.emailAddress,
     address: formData?.address,
-    judicialCountry: formData?.judicialCountry,
+    judicialCountry: judicialCountryLowerCase,
     officePhone: formData?.officePhone,
     website: formData?.website,
     socialId: formData?.socialId,
-    yearsTrading: formData?.yearsTrading,
-    totalTurnover: formData?.totalTurnover,
-    noOfStaff: formData?.noOfStaff,
-    tradingCurrency: formData?.tradingCurrency,
+    yearsTrading: yearsTradingLowerCase,
+    totalTurnover: totalTurnoverLowerCase,
+    noOfStaff: noOfStaffLowerCase,
+    tradingCurrency: tradingCurrencyLowerCase,
     adminContactName: formData?.adminContactName,
     designation: formData?.designation,
-    nameCard: formData?.nameCard,
-    nationalID: formData?.nationalID,
+    nameCard: nameCard,
+    nationalID: nationalID,
 
     // step 2
     financeContactName: formData?.financeContactName,
@@ -53,10 +139,10 @@ const StepFour = ({ formInfoCarrier }) => {
     emergencyContactEmail: formData?.emergencyContactEmail,
     emergencyContactPhone: formData?.emergencyContactPhone,
     shareholderCount: formData?.shareholderCount,
-    shareholdersInfo: formData?.shareholdersInfo,
-    registrationDocs: formData?.registrationDocs,
+    // shareholdersInfo: formData?.shareholdersInfo,
+    registrationDocs: registrationDocs,
     taxRegistrationNo: formData?.taxRegistrationNo,
-    travelAgentLicense: formData?.travelAgentLicense,
+    travelAgentLicense: travelAgentLicense,
 
     gdprConsent: formData?.gdprConsent,
     privacyPolicyConsent: formData?.privacyPolicyConsent,
@@ -108,6 +194,8 @@ const StepFour = ({ formInfoCarrier }) => {
     monthlyTransaction2: formData?.monthlyTransaction2,
     lookToBookRatio: formData?.lookToBookRatio,
   };
+
+  console.log(userInformation);
 
   const emailBodyHtml = `
   <!DOCTYPE html>
@@ -826,6 +914,29 @@ const StepFour = ({ formInfoCarrier }) => {
 `;
 
   const handleGtrMultipleForm = async () => {
+    // ImgBB image push
+
+    // server data post
+    try {
+      const response = await axios.post(
+        "https://gtr-multiple-form-backend-server-md75ucjkc-dev-rakibul1.vercel.app/api/v1/form-data/join-business",
+        JSON.stringify(userInformation), // Stringify the userData object
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(response.data);
+      setPopupOpen(true);
+    } catch (error) {
+      console.error("Error sending the request:", error);
+      setFailMeg(true);
+    }
+
+    // Email data send
     try {
       const response = await axios.post(
         "https://api.gtrs.travel/tools/send-email",

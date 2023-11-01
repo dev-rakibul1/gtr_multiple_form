@@ -4,7 +4,20 @@ const emailRex =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const StepTwo = ({ formInfoCarrier }) => {
-  const { next, prev, formData, handleInputFields, errorMeg } = formInfoCarrier;
+  const {
+    next,
+    prev,
+    formData,
+    handleInputFields,
+    errorMeg,
+    handleBtnSubmit,
+    handleFileChange,
+    setFile3,
+    setFile4,
+    file3,
+    file4,
+    selectedFiles,
+  } = formInfoCarrier;
   const [showToast, setShowToast] = useState(false);
 
   let testData = [];
@@ -505,17 +518,11 @@ const StepTwo = ({ formInfoCarrier }) => {
                 name="registrationDocs"
                 accept=".png, .pdf, .jpeg, .jpg"
                 id="registration-docs"
-                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  formData.registrationDocs && formData.registrationDocs === ""
-                    ? "border-red-600 "
-                    : " border-slate-300 "
-                }`}
-                onChange={handleInputFields}
+                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 `}
+                onChange={(e) => handleFileChange(e, setFile3)}
               />
-              {errorMeg?.registrationDocs && (
-                <small className="text-red-600">
-                  {errorMeg?.registrationDocs}
-                </small>
+              {errorMeg?.file3 && (
+                <small className="text-red-600">{errorMeg?.file3}</small>
               )}
             </div>
 
@@ -533,12 +540,7 @@ const StepTwo = ({ formInfoCarrier }) => {
                 name="taxRegistrationNo"
                 id="tax-registration-no"
                 value={formData.taxRegistrationNo}
-                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  formData.taxRegistrationNo &&
-                  formData.taxRegistrationNo === ""
-                    ? "border-red-600 "
-                    : " border-slate-300 "
-                }`}
+                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300`}
                 onChange={handleInputFields}
               />
               {errorMeg?.taxRegistrationNo && (
@@ -562,18 +564,11 @@ const StepTwo = ({ formInfoCarrier }) => {
                 accept=".png, .pdf, .jpeg, .jpg"
                 name="travelAgentLicense"
                 id="travel-agent-license"
-                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 ${
-                  formData.travelAgentLicense &&
-                  formData.travelAgentLicense === ""
-                    ? "border-red-600 "
-                    : " border-slate-300 "
-                }`}
-                onChange={handleInputFields}
+                className={`outline-0 border w-full p-2 rounded-sm focus:border-blue-500 transition-all duration-300 `}
+                onChange={(e) => handleFileChange(e, setFile4)}
               />
-              {errorMeg?.travelAgentLicense && (
-                <small className="text-red-600">
-                  {errorMeg?.travelAgentLicense}
-                </small>
+              {errorMeg?.file4 && (
+                <small className="text-red-600">{errorMeg?.file4}</small>
               )}
             </div>
           </div>
@@ -595,23 +590,24 @@ const StepTwo = ({ formInfoCarrier }) => {
               !formData.emergencyContactDesignation ||
               !formData.emergencyContactEmail ||
               !formData.emergencyContactPhone ||
-              !formData.shareholderCount ||
-              !formData.registrationDocs ||
-              !formData.taxRegistrationNo ||
-              !formData.travelAgentLicense
-                ? "gtr-btn-bg-2 text-gray-600"
+              !formData.shareholderCount
+                ? // !formData.registrationDocs ||
+                  // !formData.taxRegistrationNo ||
+                  // !formData.travelAgentLicense
+                  "gtr-btn-bg-2 text-gray-600"
                 : "gtr-btn-bg"
             }`}
             onClick={() => {
+              handleBtnSubmit();
               !formData.emergencyContactName ||
               !formData.emergencyContactDesignation ||
               !formData.emergencyContactEmail ||
               !formData.emergencyContactPhone ||
-              !formData.shareholderCount ||
-              !formData.registrationDocs ||
-              !formData.taxRegistrationNo ||
-              !formData.travelAgentLicense
-                ? setShowToast(true)
+              !formData.shareholderCount
+                ? // !formData.registrationDocs ||
+                  // !formData.taxRegistrationNo ||
+                  // !formData.travelAgentLicense
+                  setShowToast(true)
                 : next();
             }}
           >
