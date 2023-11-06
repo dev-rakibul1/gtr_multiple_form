@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import StepFour from "../../components/formComp/StepFour";
 import StepOne from "../../components/formComp/StepOne";
 import StepThree from "../../components/formComp/StepThree";
@@ -17,6 +18,8 @@ const GtrForm = () => {
   const [file2, setFile2] = useState(null);
   const [file3, setFile3] = useState(null);
   const [file4, setFile4] = useState(null);
+  const [ipInfo, setIpInfo] = useState(null);
+  const [actualIpInfo, setActualIpInfo] = useState("");
 
   // hotel content checked
   const handleHotelRadioChange = (event) => {
@@ -620,8 +623,35 @@ const GtrForm = () => {
     setSelectedFiles(imageCollectionObject);
   };
 
-  console.log("Outside Selected Files:", selectedFiles);
+  // console.log("Outside Selected Files:", selectedFiles);
 
+  // IP address and user tract
+  useEffect(() => {
+    axios.get("https://api.ipify.org?format=json").then((response) => {
+      setActualIpInfo(response.data.ip);
+    });
+  }, []);
+
+  // console.log(ipInfo);
+
+  useEffect(() => {
+    async function fetchIPInfo() {
+      try {
+        const response = await axios.get(
+          `https://ipinfo.io/${actualIpInfo}?token=51ac8447cbb768`
+        );
+        setIpInfo(response.data);
+      } catch (error) {
+        console.error("Error fetching IP information:", error);
+      }
+    }
+
+    fetchIPInfo();
+  }, []);
+
+  console.log(ipInfo);
+
+  // Form info carrier
   const formInfoCarrier = {
     next: handleNextButton,
     prev: handlePrevButton,
@@ -649,6 +679,9 @@ const GtrForm = () => {
     file3: file3,
     file4: file4,
     selectedFiles: selectedFiles,
+
+    // ip info
+    ipInfo: ipInfo,
   };
 
   return (

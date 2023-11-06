@@ -6,7 +6,7 @@ import Popup from "../shared/Popup";
 import Fail from "../shared/success/Fail";
 
 const StepFour = ({ formInfoCarrier }) => {
-  const { prev, formData, errorMeg, selectedFiles } = formInfoCarrier;
+  const { prev, formData, errorMeg, selectedFiles, ipInfo } = formInfoCarrier;
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [failMeg, setFailMeg] = useState(false);
   const { time, date } = getCurrentDateTime();
@@ -98,104 +98,6 @@ const StepFour = ({ formInfoCarrier }) => {
       throw error;
     }
   };
-
-  // File collection
-  const nameCard = imageUrls[0] || "";
-  const nationalID = imageUrls[1] || "";
-  const registrationDocs = imageUrls[2] || "";
-  const travelAgentLicense = imageUrls[3] || "";
-
-  const userInformation = {
-    clientRegisteredName: formData?.clientRegisteredName,
-    clientTradeName: formData?.clientTradeName,
-    emailAddress: formData?.emailAddress,
-    address: formData?.address,
-    judicialCountry: judicialCountryLowerCase,
-    officePhone: formData?.officePhone,
-    website: formData?.website,
-    socialId: formData?.socialId,
-    yearsTrading: yearsTradingLowerCase,
-    totalTurnover: totalTurnoverLowerCase,
-    noOfStaff: noOfStaffLowerCase,
-    tradingCurrency: tradingCurrencyLowerCase,
-    adminContactName: formData?.adminContactName,
-    designation: formData?.designation,
-    nameCard: nameCard,
-    nationalID: nationalID,
-
-    // step 2
-    financeContactName: formData?.financeContactName,
-    financeContactDesignation: formData?.financeContactDesignation,
-    financeContactEmail: formData?.financeContactEmail,
-    financeContactPhone: formData?.financeContactPhone,
-
-    reservationContactName: formData?.reservationContactName,
-    reservationContactDesignation: formData?.reservationContactDesignation,
-    reservationContactEmail: formData?.reservationContactEmail,
-    reservationContactPhone: formData?.reservationContactPhone,
-
-    emergencyContactName: formData?.emergencyContactName,
-    emergencyContactDesignation: formData?.emergencyContactDesignation,
-    emergencyContactEmail: formData?.emergencyContactEmail,
-    emergencyContactPhone: formData?.emergencyContactPhone,
-    shareholderCount: formData?.shareholderCount,
-    // shareholdersInfo: formData?.shareholdersInfo,
-    registrationDocs: registrationDocs,
-    taxRegistrationNo: formData?.taxRegistrationNo,
-    travelAgentLicense: travelAgentLicense,
-
-    gdprConsent: formData?.gdprConsent,
-    privacyPolicyConsent: formData?.privacyPolicyConsent,
-    termsPolicyConsent: formData?.termsPolicyConsent,
-
-    shareholdersInfo1: formData?.shareholdersInfo1,
-    shareholdersRatio1: formData?.shareholdersRatio1,
-    shareholdersInfo2: formData?.shareholdersInfo2,
-    shareholdersRatio2: formData?.shareholdersRatio2,
-    shareholdersInfo3: formData?.shareholdersInfo3,
-    shareholdersRatio3: formData?.shareholdersRatio3,
-    shareholdersInfo4: formData?.shareholdersInfo4,
-    shareholdersRatio4: formData?.shareholdersRatio4,
-    shareholdersInfo5: formData?.shareholdersInfo5,
-    shareholdersRatio5: formData?.shareholdersRatio5,
-    shareholdersInfo6: formData?.shareholdersInfo6,
-    shareholdersRatio6: formData?.shareholdersRatio6,
-    shareholdersInfo7: formData?.shareholdersInfo7,
-    shareholdersRatio7: formData?.shareholdersRatio7,
-    shareholdersInfo8: formData?.shareholdersInfo8,
-    shareholdersRatio8: formData?.shareholdersRatio8,
-    shareholdersInfo9: formData?.shareholdersInfo9,
-    shareholdersRatio9: formData?.shareholdersRatio9,
-    shareholdersInfo10: formData?.shareholdersInfo10,
-    shareholdersRatio10: formData?.shareholdersRatio10,
-    shareholdersInfo11: formData?.shareholdersInfo11,
-    shareholdersRatio11: formData?.shareholdersRatio11,
-    shareholdersInfo12: formData?.shareholdersInfo12,
-    shareholdersRatio12: formData?.shareholdersRatio12,
-    shareholdersInfo13: formData?.shareholdersInfo13,
-    shareholdersRatio13: formData?.shareholdersRatio13,
-    shareholdersInfo14: formData?.shareholdersInfo14,
-    shareholdersRatio14: formData?.shareholdersRatio14,
-    shareholdersInfo15: formData?.shareholdersInfo15,
-    shareholdersRatio15: formData?.shareholdersRatio15,
-    shareholdersInfo16: formData?.shareholdersInfo16,
-    shareholdersRatio16: formData?.shareholdersRatio16,
-
-    // Step 3
-    distributionMarket: formData?.distributionMarket,
-    sourceMarket: formData?.sourceMarket,
-    dailyAverageTransaction: formData?.dailyAverageTransaction,
-    averagePurchaseValue: formData?.averagePurchaseValue,
-    monthlyTransaction: formData?.monthlyTransaction,
-    distributionMarket2: formData?.distributionMarket2,
-    sourceMarket2: formData?.sourceMarket2,
-    dailyAverageTransaction2: formData?.dailyAverageTransaction2,
-    averagePurchaseValue2: formData?.averagePurchaseValue2,
-    monthlyTransaction2: formData?.monthlyTransaction2,
-    lookToBookRatio: formData?.lookToBookRatio,
-  };
-
-  console.log(userInformation);
 
   const emailBodyHtml = `
   <!DOCTYPE html>
@@ -914,12 +816,122 @@ const StepFour = ({ formInfoCarrier }) => {
 `;
 
   const handleGtrMultipleForm = async () => {
-    // ImgBB image push
+    // File collection
+    const nameCard = imageUrls[0] || "";
+    const nationalID = imageUrls[1] || "";
+    const registrationDocs = imageUrls[2] || "";
+    const travelAgentLicense = imageUrls[3] || "";
 
+    const userInformation = {
+      clientRegisteredName: formData?.clientRegisteredName,
+      clientTradeName: formData?.clientTradeName,
+      emailAddress: formData?.emailAddress,
+      address: formData?.address,
+      judicialCountry: judicialCountryLowerCase,
+      officePhone: formData?.officePhone,
+      website: formData?.website,
+      socialId: formData?.socialId,
+      yearsTrading: yearsTradingLowerCase,
+      totalTurnover: totalTurnoverLowerCase,
+      noOfStaff: noOfStaffLowerCase,
+      tradingCurrency: tradingCurrencyLowerCase,
+      adminContactName: formData?.adminContactName,
+      designation: formData?.designation,
+      nameCard: nameCard,
+      nationalID: nationalID,
+
+      // step 2
+      financeContactName: formData?.financeContactName,
+      financeContactDesignation: formData?.financeContactDesignation,
+      financeContactEmail: formData?.financeContactEmail,
+      financeContactPhone: formData?.financeContactPhone,
+
+      reservationContactName: formData?.reservationContactName,
+      reservationContactDesignation: formData?.reservationContactDesignation,
+      reservationContactEmail: formData?.reservationContactEmail,
+      reservationContactPhone: formData?.reservationContactPhone,
+
+      emergencyContactName: formData?.emergencyContactName,
+      emergencyContactDesignation: formData?.emergencyContactDesignation,
+      emergencyContactEmail: formData?.emergencyContactEmail,
+      emergencyContactPhone: formData?.emergencyContactPhone,
+      shareholderCount: formData?.shareholderCount,
+      // shareholdersInfo: formData?.shareholdersInfo,
+      registrationDocs: registrationDocs,
+      taxRegistrationNo: formData?.taxRegistrationNo,
+      travelAgentLicense: travelAgentLicense,
+
+      gdprConsent: formData?.gdprConsent,
+      privacyPolicyConsent: formData?.privacyPolicyConsent,
+      termsPolicyConsent: formData?.termsPolicyConsent,
+
+      shareholdersInfo1: formData?.shareholdersInfo1,
+      shareholdersRatio1: formData?.shareholdersRatio1,
+      shareholdersInfo2: formData?.shareholdersInfo2,
+      shareholdersRatio2: formData?.shareholdersRatio2,
+      shareholdersInfo3: formData?.shareholdersInfo3,
+      shareholdersRatio3: formData?.shareholdersRatio3,
+      shareholdersInfo4: formData?.shareholdersInfo4,
+      shareholdersRatio4: formData?.shareholdersRatio4,
+      shareholdersInfo5: formData?.shareholdersInfo5,
+      shareholdersRatio5: formData?.shareholdersRatio5,
+      shareholdersInfo6: formData?.shareholdersInfo6,
+      shareholdersRatio6: formData?.shareholdersRatio6,
+      shareholdersInfo7: formData?.shareholdersInfo7,
+      shareholdersRatio7: formData?.shareholdersRatio7,
+      shareholdersInfo8: formData?.shareholdersInfo8,
+      shareholdersRatio8: formData?.shareholdersRatio8,
+      shareholdersInfo9: formData?.shareholdersInfo9,
+      shareholdersRatio9: formData?.shareholdersRatio9,
+      shareholdersInfo10: formData?.shareholdersInfo10,
+      shareholdersRatio10: formData?.shareholdersRatio10,
+      shareholdersInfo11: formData?.shareholdersInfo11,
+      shareholdersRatio11: formData?.shareholdersRatio11,
+      shareholdersInfo12: formData?.shareholdersInfo12,
+      shareholdersRatio12: formData?.shareholdersRatio12,
+      shareholdersInfo13: formData?.shareholdersInfo13,
+      shareholdersRatio13: formData?.shareholdersRatio13,
+      shareholdersInfo14: formData?.shareholdersInfo14,
+      shareholdersRatio14: formData?.shareholdersRatio14,
+      shareholdersInfo15: formData?.shareholdersInfo15,
+      shareholdersRatio15: formData?.shareholdersRatio15,
+      shareholdersInfo16: formData?.shareholdersInfo16,
+      shareholdersRatio16: formData?.shareholdersRatio16,
+
+      // Step 3
+      distributionMarket: formData?.distributionMarket,
+      sourceMarket: formData?.sourceMarket,
+      dailyAverageTransaction: formData?.dailyAverageTransaction,
+      averagePurchaseValue: formData?.averagePurchaseValue,
+      monthlyTransaction: formData?.monthlyTransaction,
+      distributionMarket2: formData?.distributionMarket2,
+      sourceMarket2: formData?.sourceMarket2,
+      dailyAverageTransaction2: formData?.dailyAverageTransaction2,
+      averagePurchaseValue2: formData?.averagePurchaseValue2,
+      monthlyTransaction2: formData?.monthlyTransaction2,
+      lookToBookRatio: formData?.lookToBookRatio,
+
+      // Ip info
+      userTrackIp: {
+        country: ipInfo.country,
+        city: ipInfo.city,
+        ip: ipInfo.ip,
+        loc: ipInfo.loc,
+        org: ipInfo.org,
+        postal: ipInfo.postal,
+        region: ipInfo.region,
+        timezone: ipInfo.timezone,
+      },
+    };
+    // ImgBB image push
+    const url =
+      "https://gtr-multiple-form-backend-server-nqd2s5zk3-dev-rakibul1.vercel.app/api/v1/form-data/join-business/";
+    // const url =
+    //   "https://gtr-multiple-form-backend-server-md75ucjkc-dev-rakibul1.vercel.app/api/v1/form-data/join-business";
     // server data post
     try {
       const response = await axios.post(
-        "https://gtr-multiple-form-backend-server-md75ucjkc-dev-rakibul1.vercel.app/api/v1/form-data/join-business",
+        url,
         JSON.stringify(userInformation), // Stringify the userData object
         {
           headers: {
@@ -986,6 +998,8 @@ const StepFour = ({ formInfoCarrier }) => {
       console.error("Error sending the request:", error);
       setFailMeg(true);
     }
+
+    
   };
 
   return (

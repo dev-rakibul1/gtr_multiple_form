@@ -9,7 +9,7 @@ const Toast = ({ setShowToast, showToast }) => {
     setShowToast(false);
   };
 
-  console.log(showToast);
+  console.log("showToast", showToast);
 
   return (
     isVisible && (
