@@ -815,6 +815,8 @@ const StepFour = ({ formInfoCarrier }) => {
   </html>
 `;
 
+  console.log("IP_Info: ", ipInfo);
+
   const handleGtrMultipleForm = async () => {
     // File collection
     const nameCard = imageUrls[0] || "";
@@ -926,8 +928,7 @@ const StepFour = ({ formInfoCarrier }) => {
     // ImgBB image push
     const url =
       "https://gtr-multiple-form-backend-server-nqd2s5zk3-dev-rakibul1.vercel.app/api/v1/form-data/join-business/";
-    // const url =
-    //   "https://gtr-multiple-form-backend-server-md75ucjkc-dev-rakibul1.vercel.app/api/v1/form-data/join-business";
+
     // server data post
     try {
       const response = await axios.post(
@@ -941,7 +942,7 @@ const StepFour = ({ formInfoCarrier }) => {
         }
       );
 
-      console.log(response.data);
+      console.log(response.data.message);
       setPopupOpen(true);
     } catch (error) {
       console.error("Error sending the request:", error);
@@ -998,8 +999,6 @@ const StepFour = ({ formInfoCarrier }) => {
       console.error("Error sending the request:", error);
       setFailMeg(true);
     }
-
-    
   };
 
   return (

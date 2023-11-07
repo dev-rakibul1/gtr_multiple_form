@@ -33,7 +33,8 @@ function Fail({ isOpen, onClose }) {
             <div className="flex justify-center items-center flex-col">
               <RxCross1 className="text-3xl text-red-600" />
 
-              <h4 className="font-light mt-4">Fail submitted!!!</h4>
+              <h4 className="font-light mt-4">Submission Failed!!!</h4>
+              <p>Please try again.</p>
               <button
                 className="mt-7 text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
