@@ -2,8 +2,8 @@ import React from "react";
 
 const Success = () => {
   const handleGoToHome = () => {
-    // window.location.href = "/";
-    // window.location.reload();
+    window.location.href = "/";
+    window.location.reload();
   };
   return (
     <div className="w-full h-screen flex items-center justify-center">

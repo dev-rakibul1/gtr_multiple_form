@@ -6,8 +6,8 @@ function Fail({ isOpen, onClose }) {
 
   const handleGoToHome = () => {
     onClose();
-    // window.location.href = "/";
-    // window.location.reload();
+    window.location.href = "/";
+    window.location.reload();
   };
 
   return (
